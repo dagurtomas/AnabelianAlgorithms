@@ -4,7 +4,6 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Christian Merten
 -/
 
-import AnabelianAlgorithms.Linter.NonstandardAxioms
 import Mathlib.Algebra.Category.Ring.Under.Limits
 import Mathlib.CategoryTheory.Adjunction.Limits
 import Mathlib.AlgebraicGeometry.ColimitsOver
@@ -24,8 +23,6 @@ The finite-colimit construction is ported via affine-base global sections and gl
 base's directed affine cover.  Preservation of finite colimits by flat pullback remains a lower
 boundary.
 -/
-
-set_option linter.nonstandardAxioms false
 
 noncomputable section
 

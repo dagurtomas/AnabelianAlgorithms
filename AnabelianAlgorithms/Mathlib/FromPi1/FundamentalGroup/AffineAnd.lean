@@ -4,7 +4,6 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Christian Merten
 -/
 
-import AnabelianAlgorithms.Linter.NonstandardAxioms
 import Mathlib.Algebra.Category.Ring.Under.Property
 import Mathlib.AlgebraicGeometry.Morphisms.AffineAnd
 import AnabelianAlgorithms.Mathlib.FromPi1.FundamentalGroup.AffineColimits
@@ -22,8 +21,6 @@ finite colimits of finite-étale covers and prove that pullback preserves them. 
 finite-colimit argument is ported here; the remaining gluing theorem for the category of affine
 morphisms is isolated in `AnabelianAlgorithms.Mathlib.FromPi1.FundamentalGroup.AffineColimits`.
 -/
-
-set_option linter.nonstandardAxioms false
 
 noncomputable section
 

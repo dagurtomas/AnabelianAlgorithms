@@ -1,8 +1,4 @@
-
-import AnabelianAlgorithms.Linter.NonstandardAxioms
 import Mathlib.RingTheory.TensorProduct.Maps
-
-set_option linter.nonstandardAxioms false
 
 /-
 This file was copied and adapted from Christian Merten's `pi1` project

@@ -4,43 +4,24 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Dagur Asgeirsson
 -/
 
-import AnabelianLib.Framework.HomForm
+import AnabelianAlgorithms.Linter.NonstandardAxioms
 import AnabelianAlgorithms.Mathlib.AlgebraicGeometry.FiniteEtale.BaseGalois
-import Mathlib.Algebra.Category.CommAlgCat.Basic
-import Mathlib.Algebra.Category.ModuleCat.Limits
-import Mathlib.Algebra.Group.Shrink
+import AnabelianLib.Framework.HomForm
+import Mathlib.Algebra.Category.Grp.AB
 import Mathlib.AlgebraicGeometry.Geometrically.Connected
-import Mathlib.AlgebraicGeometry.Morphisms.Proper
-import Mathlib.AlgebraicGeometry.Morphisms.Smooth
-import Mathlib.AlgebraicGeometry.Morphisms.UnderlyingMap
-import Mathlib.AlgebraicGeometry.Noetherian
 import Mathlib.AlgebraicGeometry.ZariskisMainTheorem
+import Mathlib.CategoryTheory.Abelian.GrothendieckAxioms.Sheaf
 import Mathlib.CategoryTheory.Abelian.GrothendieckCategory.HasExt
-import Mathlib.CategoryTheory.Comma.StructuredArrow.Basic
-import Mathlib.CategoryTheory.ConcreteCategory.Basic
 import Mathlib.CategoryTheory.Galois.Equivalence
-import Mathlib.CategoryTheory.Limits.Shapes.ConcreteCategory
-import Mathlib.CategoryTheory.Limits.Types.End
-import Mathlib.CategoryTheory.ObjectProperty.FullSubcategory
-import Mathlib.CategoryTheory.Profunctor.Basic
-import Mathlib.CategoryTheory.Quotient
 import Mathlib.CategoryTheory.Sites.SheafCohomology.Basic
 import Mathlib.CategoryTheory.Widesubcategory
-import Mathlib.Data.Fintype.Shrink
-import Mathlib.FieldTheory.Galois.Profinite
-import Mathlib.Geometry.RingedSpace.Basic
-import Mathlib.LinearAlgebra.FiniteDimensional.Basic
 import Mathlib.NumberTheory.Padics.PadicNumbers
 import Mathlib.RingTheory.KrullDimension.Field
 import Mathlib.RingTheory.KrullDimension.Polynomial
-import Mathlib.RingTheory.Spectrum.Prime.Jacobson
-import Mathlib.RingTheory.Unramified.LocalStructure
 import Mathlib.Topology.Algebra.ClopenNhdofOne
 import Mathlib.Topology.Algebra.Group.OpenMapping
 import Mathlib.Topology.Algebra.Module.TransferInstance
 import Mathlib.Topology.Baire.LocallyCompactRegular
-import Mathlib.Topology.Instances.Shrink
-import Mathlib.Topology.Sheaves.Abelian
 
 /-!
 # Standalone Hom-form statement for proper hyperbolic curves over `p`-adic local fields
@@ -60,8 +41,6 @@ current representative presentation, and the final Hom-form theorem.  The next r
 replace the representative bookkeeping laws by an explicit quotient/torsor for change of geometric
 point.
 -/
-
--- set_option linter.nonstandardAxioms false
 
 universe u uG
 

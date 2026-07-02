@@ -4,7 +4,6 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Dagur Asgeirsson
 -/
 
-import AnabelianAlgorithms.Linter.NonstandardAxioms
 import Mathlib.CategoryTheory.Comma.StructuredArrow.Basic
 import Mathlib.CategoryTheory.Core
 import Mathlib.CategoryTheory.Quotient
@@ -18,8 +17,6 @@ This file defines the quotient category of profinite groups by target-inner conj
 by the example statements and by reusable absolute-Galois scaffolding, so it lives outside the
 example namespace.
 -/
-
-set_option linter.nonstandardAxioms false
 
 universe u
 

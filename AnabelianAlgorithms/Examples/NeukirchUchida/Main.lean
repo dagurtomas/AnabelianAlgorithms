@@ -4,6 +4,7 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Dagur Asgeirsson
 -/
 
+import AnabelianAlgorithms.Linter.NonstandardAxioms
 import AnabelianLib.Framework.IsoForm
 import AnabelianAlgorithms.Mathlib.NumberField.AbsoluteGalois.NumberFieldCat
 
@@ -20,8 +21,6 @@ outer profinite groups is supplied by the framework from fullness and essential 
 cores.
 -/
 
--- set_option linter.nonstandardAxioms false
-
 universe u
 
 namespace Anabelian
@@ -35,17 +34,21 @@ open scoped NumberField
 noncomputable abbrev profiniteAsOuterFunctor : ProfiniteGrp.{u} ⥤ ProfiniteGrpOuter.{u} :=
   CategoryTheory.Quotient.functor profiniteGrpOuterRel
 
+axiom fullyFaithfulAbsGalNumberField : absGalNumberField.FullyFaithful
+
 /-- The objectwise Neukirch--Uchida equivalence, isolated as the theorem-level axiom. -/
-axiom neukirchUchidaHomEquiv (X Y : Core (NumberFieldCat.{u}ᵒᵖ)) :
-    (Y ⟶ X) ≃ (absGalNumberField.obj Y ⟶ absGalNumberField.obj X)
+noncomputable abbrev neukirchUchidaHomEquiv (X Y : Core (NumberFieldCat.{u}ᵒᵖ)) :
+    (Y ⟶ X) ≃ (absGalNumberField.obj Y ⟶ absGalNumberField.obj X) :=
+  fullyFaithfulAbsGalNumberField.homEquiv
 
 /--
 The supplied Neukirch--Uchida equivalence is the canonical map induced by the absolute-Galois
 functor in its forward direction.
 -/
-axiom neukirchUchidaHomEquiv_apply
+lemma neukirchUchidaHomEquiv_apply
     {X Y : Core (NumberFieldCat.{u}ᵒᵖ)} (f : Y ⟶ X) :
-    neukirchUchidaHomEquiv X Y f = absGalNumberField.map f
+    neukirchUchidaHomEquiv X Y f = absGalNumberField.map f :=
+  rfl
 
 /-- Naturality of the axiomatically supplied Neukirch--Uchida equivalence in the target. -/
 theorem neukirchUchidaHomEquiv_natural_left

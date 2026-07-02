@@ -15,8 +15,6 @@ arbitrary separable closures with the chosen algebraic closures used by
 `NumberField.absGalProfiniteObj`.
 -/
 
-set_option linter.nonstandardAxioms false
-
 universe u
 
 open CategoryTheory

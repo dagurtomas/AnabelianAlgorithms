@@ -4,7 +4,6 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Dagur Asgeirsson
 -/
 
-import AnabelianAlgorithms.Linter.NonstandardAxioms
 import Mathlib.Algebra.Field.ZMod
 import Mathlib.Analysis.Polynomial.Basic
 import Mathlib.NumberTheory.RamificationInertia.Galois
@@ -21,8 +20,6 @@ upstairs ring of integers, compatible by definition with the existing pointwise 
 It also contains the elementary Schur prime-divisor theorem for integer-polynomial values, used as
 an arithmetic prime-producing engine in later phases.
 -/
-
-set_option linter.nonstandardAxioms false
 
 open scoped Pointwise
 

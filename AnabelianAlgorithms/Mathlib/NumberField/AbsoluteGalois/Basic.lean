@@ -4,7 +4,6 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Dagur Asgeirsson
 -/
 
-import AnabelianAlgorithms.Linter.NonstandardAxioms
 import AnabelianAlgorithms.Mathlib.ProfiniteGrpOuter
 import Mathlib.Algebra.Ring.Aut
 import Mathlib.FieldTheory.Galois.Profinite
@@ -18,8 +17,6 @@ This file contains the axiom-free part of the absolute-Galois scaffold: conjugat
 isomorphisms, the profinite absolute Galois group, and its image in the outer profinite-group
 category.
 -/
-
-set_option linter.nonstandardAxioms false
 
 open CategoryTheory
 

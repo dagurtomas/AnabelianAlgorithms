@@ -4,7 +4,6 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Dagur Asgeirsson
 -/
 
-import AnabelianAlgorithms.Linter.NonstandardAxioms
 import Mathlib.Algebra.Field.ULift
 import Mathlib.FieldTheory.Galois.Profinite
 import Mathlib.NumberTheory.NumberField.Basic
@@ -16,8 +15,6 @@ import Mathlib.NumberTheory.NumberField.Basic
 This file collects reusable `ULift` transport for number-field structures, separable closures,
 Galois groups, ring equivalences, and embedded base-field ranges.
 -/
-
-set_option linter.nonstandardAxioms false
 
 universe u v w z l
 

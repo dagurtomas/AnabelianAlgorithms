@@ -1,9 +1,5 @@
-
-import AnabelianAlgorithms.Linter.NonstandardAxioms
 import Mathlib.RingTheory.Etale.Descent
 import AnabelianAlgorithms.Mathlib.RingTheory.FiniteEtale.Basic
-
-set_option linter.nonstandardAxioms false
 
 /-
 This file was copied and adapted from Christian Merten's `pi1` project

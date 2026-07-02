@@ -3,7 +3,6 @@ Copyright (c) 2025 Christian Merten. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Christian Merten
 -/
-import AnabelianAlgorithms.Linter.NonstandardAxioms
 import Mathlib.AlgebraicGeometry.Morphisms.FormallyUnramified
 import Mathlib.AlgebraicGeometry.Morphisms.QuasiFinite
 import Mathlib.AlgebraicGeometry.Morphisms.WeaklyEtale
@@ -38,8 +37,6 @@ mathlib APIs or moved into `AnabelianAlgorithms/Mathlib`.  The remaining `FromPi
 are the scheme-level finite-étale category and finite-colimit/gluing construction in
 `FiniteEtale`, `AffineAnd`, and `AffineColimits`.
 -/
-
--- set_option linter.nonstandardAxioms false
 
 universe u
 

@@ -1,10 +1,6 @@
-
-import AnabelianAlgorithms.Linter.NonstandardAxioms
 import Mathlib.Algebra.Lie.OfAssociative
 import Mathlib.RingTheory.RingHom.Etale
 import Mathlib.RingTheory.TotallySplit
-
-set_option linter.nonstandardAxioms false
 
 /-
 This file was copied and adapted from Christian Merten's `pi1` project

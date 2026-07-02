@@ -1,5 +1,3 @@
-
-import AnabelianAlgorithms.Linter.NonstandardAxioms
 import Mathlib.Logic.Function.Coequalizer
 import Mathlib.RingTheory.Finiteness.ModuleFinitePresentation
 import Mathlib.AlgebraicGeometry.PullbackCarrier
@@ -8,8 +6,6 @@ import Mathlib.RingTheory.RingHom.Bijective
 import Mathlib.RingTheory.Spectrum.Prime.Chevalley
 import AnabelianAlgorithms.Mathlib.RingTheory.TensorProduct.Basic
 import AnabelianAlgorithms.Mathlib.RingTheory.FiniteEtale.Descent
-
-set_option linter.nonstandardAxioms false
 
 /-
 This file amalgamates material copied and adapted from Christian Merten's `pi1` project

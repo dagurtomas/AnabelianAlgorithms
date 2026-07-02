@@ -4,7 +4,6 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Dagur Asgeirsson
 -/
 
-import AnabelianAlgorithms.Linter.NonstandardAxioms
 import AnabelianAlgorithms.Mathlib.NumberField.AbsoluteGalois.Basic
 import AnabelianAlgorithms.Mathlib.NumberField.AbsoluteGalois.SplitPrime
 import Mathlib.FieldTheory.KummerExtension
@@ -21,8 +20,6 @@ This file contains the profinite/group-theoretic reduction used in the proof tha
 absolute Galois groups have trivial center, together with the first finite Kummer-theoretic setup
 used by the arithmetic part of the proof.
 -/
-
-set_option linter.nonstandardAxioms false
 
 universe u
 
