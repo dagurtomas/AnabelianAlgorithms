@@ -366,10 +366,10 @@ noncomputable abbrev structureSheafCohomology {p : ℕ} [Fact p.Prime]
 
 namespace StructureSheafCohomology
 
--- /-- Coherent cohomology finiteness for the structure sheaf of a proper scheme over a field. -/
--- @[instance] axiom finiteDimensional_of_proper {p : ℕ} [Fact p.Prime]
---     (K : PadicLocalFieldCat.{u} p) (X : Over (Spec (.of K))) [IsProper X.hom] (i : ℕ) :
---     FiniteDimensional K (structureSheafCohomology K X i)
+/-- Coherent cohomology finiteness for the structure sheaf of a proper scheme over a field. -/
+@[instance] axiom finiteDimensional_of_proper {p : ℕ} [Fact p.Prime]
+    (K : PadicLocalFieldCat.{u} p) (X : Over (Spec (.of K))) [IsProper X.hom] (i : ℕ) :
+    FiniteDimensional K (structureSheafCohomology K X i)
 
 end StructureSheafCohomology
 
