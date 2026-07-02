@@ -6,6 +6,7 @@ Authors: Dagur Asgeirsson
 
 module
 
+import all AnabelianAlgorithms.Linter.NonstandardAxioms
 public import AnabelianAlgorithms.Mathlib.NumberField.AbsoluteGalois.NumberFieldCat
 public import AnabelianLib.Framework.IsoForm
 
@@ -23,8 +24,9 @@ cores.
 
 @[expose] public section
 
-universe u
+set_option linter.nonstandardAxioms false
 
+universe u
 
 namespace Anabelian
 namespace Examples

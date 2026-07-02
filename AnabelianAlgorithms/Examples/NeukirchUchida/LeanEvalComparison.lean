@@ -6,6 +6,7 @@ Authors: Dagur Asgeirsson
 
 module
 
+import all AnabelianAlgorithms.Linter.NonstandardAxioms
 public import AnabelianAlgorithms.Examples.NeukirchUchida.Main
 public import AnabelianAlgorithms.Mathlib.FieldTheory.Galois.ULift
 public import AnabelianAlgorithms.Mathlib.NumberField.AbsoluteGalois.CenterTrivial
@@ -22,6 +23,8 @@ The concrete absolute-Galois reconstruction helpers live in
 -/
 
 @[expose] public section
+
+set_option linter.nonstandardAxioms false
 
 universe u v w z l
 
