@@ -4,11 +4,8 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Dagur Asgeirsson
 -/
 
-import AnabelianAlgorithms.Mathlib.FromPi1.FundamentalGroup.Galois
-import Mathlib.CategoryTheory.Galois.Topology
-import Mathlib.FieldTheory.Galois.Profinite
-import Mathlib.FieldTheory.IntermediateField.Adjoin.Basic
-import Mathlib.RingTheory.Etale.Finite
+import AnabelianAlgorithms.Examples.MochizukiThm.FromPi1.FundamentalGroup.Galois
+import Mathlib
 
 /-!
 # Base Galois action on finite étale fibers

@@ -6,7 +6,7 @@ Authors: Christian Merten
 
 import Mathlib.Algebra.Category.Ring.Under.Property
 import Mathlib.AlgebraicGeometry.Morphisms.AffineAnd
-import AnabelianAlgorithms.Mathlib.FromPi1.FundamentalGroup.AffineColimits
+import AnabelianAlgorithms.Examples.MochizukiThm.FromPi1.FundamentalGroup.AffineColimits
 
 
 /-

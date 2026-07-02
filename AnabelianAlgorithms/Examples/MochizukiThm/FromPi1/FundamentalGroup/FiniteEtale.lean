@@ -4,16 +4,10 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Christian Merten
 -/
 
-import Mathlib.AlgebraicGeometry.Morphisms.Etale
-import Mathlib.AlgebraicGeometry.Morphisms.AffineAnd
-import Mathlib.AlgebraicGeometry.Morphisms.FlatMono
-import Mathlib.AlgebraicGeometry.Limits
-import Mathlib.Algebra.Category.Ring.Under.Property
-import Mathlib.RingTheory.Flat.Equalizer
-import Mathlib.RingTheory.RingHom.LocallyStandardSmooth
-import AnabelianAlgorithms.Mathlib.FromPi1.FundamentalGroup.AffineAnd
+import AnabelianAlgorithms.Examples.MochizukiThm.FromPi1.FundamentalGroup.AffineAnd
 import AnabelianAlgorithms.Mathlib.RingTheory.FiniteEtale.Equalizer
-
+import Mathlib.AlgebraicGeometry.Morphisms.Etale
+import Mathlib.AlgebraicGeometry.Morphisms.FlatMono
 
 /-
 This file was copied and adapted from Christian Merten's `pi1` project

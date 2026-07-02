@@ -5,23 +5,8 @@ Authors: Dagur Asgeirsson
 -/
 
 import AnabelianAlgorithms.Linter.NonstandardAxioms
-import AnabelianAlgorithms.Mathlib.AlgebraicGeometry.FiniteEtale.BaseGalois
+import AnabelianAlgorithms.Examples.MochizukiThm.BaseGalois
 import AnabelianLib.Framework.HomForm
-import Mathlib.Algebra.Category.Grp.AB
-import Mathlib.AlgebraicGeometry.Geometrically.Connected
-import Mathlib.AlgebraicGeometry.ZariskisMainTheorem
-import Mathlib.CategoryTheory.Abelian.GrothendieckAxioms.Sheaf
-import Mathlib.CategoryTheory.Abelian.GrothendieckCategory.HasExt
-import Mathlib.CategoryTheory.Galois.Equivalence
-import Mathlib.CategoryTheory.Sites.SheafCohomology.Basic
-import Mathlib.CategoryTheory.Widesubcategory
-import Mathlib.NumberTheory.Padics.PadicNumbers
-import Mathlib.RingTheory.KrullDimension.Field
-import Mathlib.RingTheory.KrullDimension.Polynomial
-import Mathlib.Topology.Algebra.ClopenNhdofOne
-import Mathlib.Topology.Algebra.Group.OpenMapping
-import Mathlib.Topology.Algebra.Module.TransferInstance
-import Mathlib.Topology.Baire.LocallyCompactRegular
 
 /-!
 # Standalone Hom-form statement for proper hyperbolic curves over `p`-adic local fields

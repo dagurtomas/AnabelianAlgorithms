@@ -3,24 +3,31 @@ Copyright (c) 2025 Christian Merten. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Christian Merten
 -/
-import Mathlib.AlgebraicGeometry.Morphisms.FormallyUnramified
+import AnabelianAlgorithms.Examples.MochizukiThm.FromPi1.FundamentalGroup.FiniteEtale
+import Mathlib.AlgebraicGeometry.Morphisms.FlatRank
 import Mathlib.AlgebraicGeometry.Morphisms.QuasiFinite
 import Mathlib.AlgebraicGeometry.Morphisms.WeaklyEtale
 import Mathlib.AlgebraicGeometry.Sites.Fpqc
-import Mathlib.AlgebraicGeometry.Morphisms.Immersion
-import Mathlib.AlgebraicGeometry.Morphisms.UniversallyInjective
-import Mathlib.CategoryTheory.Adjunction.Limits
-import Mathlib.CategoryTheory.Galois.IsFundamentalgroup
-import Mathlib.CategoryTheory.Limits.FintypeCat
-import Mathlib.CategoryTheory.Limits.MorphismProperty
-import Mathlib.CategoryTheory.MorphismProperty.Limits
-import Mathlib.AlgebraicGeometry.Morphisms.FlatRank
-import Mathlib.RingTheory.Smooth.StandardSmoothCotangent
+import Mathlib.CategoryTheory.Galois.Topology
 import Mathlib.RingTheory.Flat.TorsionFree
-import Mathlib.RingTheory.Henselian
 import Mathlib.Topology.Connected.CardComponents
-import AnabelianAlgorithms.Mathlib.RingTheory.Ideal.Quotient.Operations
-import AnabelianAlgorithms.Mathlib.FromPi1.FundamentalGroup.FiniteEtale
+-- import AnabelianAlgorithms.Mathlib.RingTheory.Ideal.Quotient.Operations
+-- import Mathlib.AlgebraicGeometry.Morphisms.FormallyUnramified
+-- import Mathlib.AlgebraicGeometry.Morphisms.QuasiFinite
+-- import Mathlib.AlgebraicGeometry.Morphisms.WeaklyEtale
+-- import Mathlib.AlgebraicGeometry.Sites.Fpqc
+-- import Mathlib.AlgebraicGeometry.Morphisms.Immersion
+-- import Mathlib.AlgebraicGeometry.Morphisms.UniversallyInjective
+-- import Mathlib.CategoryTheory.Adjunction.Limits
+-- import Mathlib.CategoryTheory.Galois.IsFundamentalgroup
+-- import Mathlib.CategoryTheory.Limits.FintypeCat
+-- import Mathlib.CategoryTheory.Limits.MorphismProperty
+-- import Mathlib.CategoryTheory.MorphismProperty.Limits
+-- import Mathlib.AlgebraicGeometry.Morphisms.FlatRank
+-- import Mathlib.RingTheory.Smooth.StandardSmoothCotangent
+-- import Mathlib.RingTheory.Flat.TorsionFree
+-- import Mathlib.RingTheory.Henselian
+-- import Mathlib.Topology.Connected.CardComponents
 
 
 /-!
@@ -405,6 +412,7 @@ lemma _root_.IsArtinianRing.equivPi_naturality_apply (R S : Type*) [CommRing R] 
         (IsArtinianRing.equivPi R x) := by
   ext m
   simp [IsArtinianRing.equivPi, IsArtinianRing.quotNilradicalEquivPi]
+  rfl
 
 instance (priority := 900) instIsAffineFiniteEtaleOfAffine [IsAffine X] (Y : FiniteEtale X) :
     IsAffine Y.left := by
@@ -722,10 +730,10 @@ instance galoisCategory (X : Scheme.{u}) [ConnectedSpace X] : GaloisCategory (Fi
 the automorphism group of the fiber functor at `ξ`. -/
 notation:arg "π₁ᵉᵗ" "(" x ")" => Aut (fiber x)
 
-example : IsTopologicalGroup π₁ᵉᵗ(ξ) := inferInstance
-example : T2Space π₁ᵉᵗ(ξ) := inferInstance
-example : TotallyDisconnectedSpace π₁ᵉᵗ(ξ) := inferInstance
-example : CompactSpace π₁ᵉᵗ(ξ) := inferInstance
+instance : IsTopologicalGroup π₁ᵉᵗ(ξ) := inferInstance
+instance : T2Space π₁ᵉᵗ(ξ) := inferInstance
+instance : TotallyDisconnectedSpace π₁ᵉᵗ(ξ) := inferInstance
+instance : CompactSpace π₁ᵉᵗ(ξ) := inferInstance
 
 end FiniteEtale
 end AlgebraicGeometry

@@ -4,12 +4,8 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Christian Merten
 -/
 
-import Mathlib.Algebra.Category.Ring.Under.Limits
-import Mathlib.CategoryTheory.Adjunction.Limits
 import Mathlib.AlgebraicGeometry.ColimitsOver
-import Mathlib.AlgebraicGeometry.Morphisms.Affine
 import Mathlib.AlgebraicGeometry.Morphisms.Flat
-
 
 /-
 This file was copied and adapted from Christian Merten's `pi1` project
