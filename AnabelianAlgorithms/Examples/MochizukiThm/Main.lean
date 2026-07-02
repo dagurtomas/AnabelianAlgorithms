@@ -27,6 +27,8 @@ replace the representative bookkeeping laws by an explicit quotient/torsor for c
 point.
 -/
 
+set_option linter.nonstandardAxioms false
+
 universe u uG
 
 namespace ProfiniteGrp

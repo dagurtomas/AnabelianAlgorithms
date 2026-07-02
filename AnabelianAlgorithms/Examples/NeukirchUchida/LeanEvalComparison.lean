@@ -19,6 +19,8 @@ The concrete absolute-Galois reconstruction helpers live in
 `AnabelianAlgorithms.Mathlib.NumberField.AbsoluteGalois.NeukirchUchidaConcrete`.
 -/
 
+set_option linter.nonstandardAxioms false
+
 universe u v w z l
 
 open CategoryTheory

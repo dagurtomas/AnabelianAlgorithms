@@ -23,6 +23,8 @@ cores.
 
 universe u
 
+set_option linter.nonstandardAxioms false
+
 namespace Anabelian
 namespace Examples
 namespace NeukirchUchidaStandalone
@@ -55,14 +57,14 @@ theorem neukirchUchidaHomEquiv_natural_left
     {X X' Y : Core (NumberFieldCat.{u}ᵒᵖ)} (f : Y ⟶ X) (g : X ⟶ X') :
     neukirchUchidaHomEquiv X' Y (f ≫ g) =
       neukirchUchidaHomEquiv X Y f ≫ absGalNumberField.map g := by
-  simp [neukirchUchidaHomEquiv_apply]
+  simp
 
 /-- Naturality of the axiomatically supplied Neukirch--Uchida equivalence in the source. -/
 theorem neukirchUchidaHomEquiv_natural_right
     {X Y Y' : Core (NumberFieldCat.{u}ᵒᵖ)} (f : Y ⟶ X) (g : Y' ⟶ Y) :
     neukirchUchidaHomEquiv X Y' (g ≫ f) =
       absGalNumberField.map g ≫ neukirchUchidaHomEquiv X Y f := by
-  simp [neukirchUchidaHomEquiv_apply]
+  simp
 
 /-- The representable outer Iso-form package, with the theorem field supplied axiomatically. -/
 noncomputable def neukirchUchidaOuterRepresentablePackage :
