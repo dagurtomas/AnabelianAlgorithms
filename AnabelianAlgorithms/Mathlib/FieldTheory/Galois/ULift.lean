@@ -41,10 +41,7 @@ theorem isAlgClosed_of_ringEquiv' {k : Type u} (k' : Type v) [Field k] [Field k'
   clear hx hpe hp hmp
   induction p using Polynomial.induction_on <;> simp_all
 
-set_option linter.defProp false in
-/-- Transport a number-field structure to a universe lift. -/
-@[reducible]
-noncomputable def uliftNumberField {K : Type u} [Field K] [NumberField K] :
+lemma uliftNumberField {K : Type u} [Field K] [NumberField K] :
     NumberField (ULift.{w} K) :=
   NumberField.of_ringEquiv K (ULift.{w} K) (ULift.ringEquiv.symm)
 
@@ -68,10 +65,7 @@ theorem uliftAlgebra_down_algebraMap {K : Type u} {K' : Type v} [Field K] [Field
     (algebraMap (ULift.{w} K) (ULift.{w} K') x).down = algebraMap K K' x.down :=
   rfl
 
-set_option linter.defProp false in
-/-- Transport a separable-closure structure to a universe lift. -/
-@[reducible]
-noncomputable def uliftIsSepClosure {K : Type u} {K' : Type v} [Field K] [Field K']
+lemma uliftIsSepClosure {K : Type u} {K' : Type v} [Field K] [Field K']
     [NumberField K] [Algebra K K'] [IsSepClosure K K'] :
     letI : Algebra (ULift.{w} K) (ULift.{w} K') := uliftAlgebra
     IsSepClosure (ULift.{w} K) (ULift.{w} K') := by

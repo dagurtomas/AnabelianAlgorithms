@@ -627,7 +627,6 @@ lemma exists_fiberPoint_same_connectedComponent [ConnectedSpace X]
   rw [hm]
   exact ((pullback.fst ((Y.left.connCompOpen i).ι ≫ Y.hom) ξ).base z).2
 
-set_option linter.unnecessarySimpa false in
 lemma pullbackMap_isPullback {Y : Scheme.{u}} (g : Y ⟶ X) {A B : FiniteEtale X}
     (f : A ⟶ B) :
     IsPullback (pullback.fst A.hom g) (((pullback g).map f).left)
@@ -642,7 +641,7 @@ lemma pullbackMap_isPullback {Y : Scheme.{u}} (g : Y ⟶ X) {A B : FiniteEtale X
     · change pullback.lift (pullback.fst A.hom g ≫ f.left) (pullback.snd A.hom g) _ ≫
           pullback.snd B.hom g = pullback.snd A.hom g
       exact pullback.lift_snd _ _ _
-    · simpa using f.w
+    · simp
   have e : pullback.fst A.hom g ≫ f.left =
       ((pullback g).map f).left ≫ pullback.fst B.hom g := by
     change pullback.fst A.hom g ≫ f.left =

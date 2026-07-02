@@ -231,14 +231,14 @@ noncomputable def oddKummerBaseField : IntermediateField K (AlgebraicClosure L) 
 noncomputable abbrev oddKummerField : Type u :=
   normalClosure K (oddKummerBaseField (K := K) (L := L)) (AlgebraicClosure L)
 
-set_option linter.unusedSectionVars false in
+omit [IsGalois K L]
 theorem finiteDimensional_oddKummerEmbeddedL :
     FiniteDimensional K (oddKummerEmbeddedL (K := K) (L := L)) := by
   unfold oddKummerEmbeddedL
   exact (IsScalarTower.toAlgHom K L (AlgebraicClosure L)).equivFieldRange.toLinearEquiv
     |>.finiteDimensional
 
-set_option linter.unusedSectionVars false in
+omit [IsGalois K L]
 theorem finiteDimensional_oddKummerZetaField :
     FiniteDimensional K (oddKummerZetaField (K := K) (L := L)) := by
   unfold oddKummerZetaField
@@ -273,7 +273,7 @@ noncomputable def oddKummerAlgebraL :
     (((IsScalarTower.toAlgHom K L (AlgebraicClosure L)).codRestrict _ fun x ↦ hL ⟨x, rfl⟩)
       |>.toRingHom)
 
-set_option linter.unusedSectionVars false in
+omit [NumberField K] in
 theorem oddKummerTower :
     letI : Algebra L (oddKummerField (K := K) (L := L)) :=
       oddKummerAlgebraL (K := K) (L := L)
@@ -287,7 +287,7 @@ theorem oddKummerTower :
     algebraMap L (AlgebraicClosure L) (algebraMap K L x)
   simp [IsScalarTower.algebraMap_apply K L (AlgebraicClosure L)]
 
-set_option linter.unusedSectionVars false in
+omit [NumberField K] in
 theorem oddKummerZeta_mem_field :
     oddKummerZeta (L := L) ∈
       (normalClosure K (oddKummerBaseField (K := K) (L := L)) (AlgebraicClosure L) :
@@ -299,6 +299,7 @@ theorem oddKummerZeta_mem_field :
     (IntermediateField.subset_adjoin K ({oddKummerZeta (L := L)} : Set (AlgebraicClosure L))
       (by simp))
 
+omit [NumberField K] in
 theorem oddKummerPrimitiveRoot :
     (primitiveRoots 3 (oddKummerField (K := K) (L := L))).Nonempty := by
   refine ⟨⟨oddKummerZeta (L := L), oddKummerZeta_mem_field (K := K) (L := L)⟩, ?_⟩

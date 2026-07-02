@@ -24,8 +24,6 @@ cores.
 
 @[expose] public section
 
-set_option linter.nonstandardAxioms false
-
 universe u
 
 namespace Anabelian

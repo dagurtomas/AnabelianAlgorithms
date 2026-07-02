@@ -20,8 +20,6 @@ openness of the point-indexed outer `π₁` map.
 
 @[expose] public section
 
-set_option linter.nonstandardAxioms false
-
 universe u uG
 
 namespace Anabelian

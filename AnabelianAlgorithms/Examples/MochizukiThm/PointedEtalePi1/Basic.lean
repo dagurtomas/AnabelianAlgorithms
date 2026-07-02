@@ -320,12 +320,11 @@ lemma pointedEtalePi1Map_hom_app {X Y : Scheme.{u}} [ConnectedSpace X] [Connecte
 
 /-! ## Open stabilizers and finite-index image -/
 
-set_option linter.unusedFintypeInType false in
 /-- The finite quotient by an open subgroup, shrunk to a prescribed universe, is a continuous
 finite action. -/
 lemma quotientOpenSubgroup_shrink_action_isContinuous {G : Type uG}
     [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
-    (V : OpenSubgroup G) [Fintype (G ⧸ V.toSubgroup)] :
+    (V : OpenSubgroup G) [Finite (G ⧸ V.toSubgroup)] :
     (Action.FintypeCat.ofMulAction G
       (FintypeCat.of (Shrink.{u, uG} (G ⧸ V.toSubgroup)))).IsContinuous := by
   rw [Action.isContinuous_def]
@@ -374,10 +373,9 @@ noncomputable def quotientOpenSubgroupShrinkContAction {G : Type uG}
       (FintypeCat.of (Shrink.{u, uG} (G ⧸ V.toSubgroup))),
     quotientOpenSubgroup_shrink_action_isContinuous V⟩
 
-set_option linter.unusedFintypeInType false in
 lemma quotientOpenSubgroupShrink_base_fixed_iff {G : Type uG}
     [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
-    (V : OpenSubgroup G) [Fintype (G ⧸ V.toSubgroup)] (g : G) :
+    (V : OpenSubgroup G) [Finite (G ⧸ V.toSubgroup)] (g : G) :
     g • (equivShrink.{u, uG} (G ⧸ V.toSubgroup) (⟦(1 : G)⟧ : G ⧸ V.toSubgroup)) =
         equivShrink.{u, uG} (G ⧸ V.toSubgroup) (⟦(1 : G)⟧ : G ⧸ V.toSubgroup) ↔
       g ∈ V.toSubgroup := by
