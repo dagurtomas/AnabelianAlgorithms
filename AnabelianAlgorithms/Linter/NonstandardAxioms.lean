@@ -24,8 +24,6 @@ entries are exported in `.olean` files, so downstream checks can reuse them with
 long imported dependency chains.
 -/
 
-@[expose] public section
-
 open Lean Elab Command Linter
 
 namespace Anabelian.Linter

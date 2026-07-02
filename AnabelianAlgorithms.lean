@@ -22,5 +22,3 @@ public import AnabelianAlgorithms.Mathlib.RingTheory.FiniteEtale.Descent
 public import AnabelianAlgorithms.Mathlib.RingTheory.FiniteEtale.Equalizer
 public import AnabelianAlgorithms.Mathlib.RingTheory.Ideal.Quotient.Operations
 public import AnabelianAlgorithms.Mathlib.RingTheory.TensorProduct.Basic
-
-@[expose] public section

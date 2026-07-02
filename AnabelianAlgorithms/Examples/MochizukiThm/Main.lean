@@ -6,7 +6,6 @@ Authors: Dagur Asgeirsson
 
 module
 
-public import AnabelianAlgorithms.Linter.NonstandardAxioms
 public import AnabelianAlgorithms.Examples.MochizukiThm.BaseGalois
 public import AnabelianLib.Framework.HomForm
 
@@ -30,8 +29,6 @@ point.
 -/
 
 @[expose] public section
-
-set_option linter.nonstandardAxioms false
 
 universe u uG
 

@@ -6,10 +6,8 @@ Authors: Dagur Asgeirsson
 
 module
 
-public import AnabelianAlgorithms.Linter.NonstandardAxioms
-public import AnabelianLib.Framework.IsoForm
 public import AnabelianAlgorithms.Mathlib.NumberField.AbsoluteGalois.NumberFieldCat
-
+public import AnabelianLib.Framework.IsoForm
 
 /-!
 # Standalone Neukirch--Uchida package statement
@@ -27,7 +25,6 @@ cores.
 
 universe u
 
-set_option linter.nonstandardAxioms false
 
 namespace Anabelian
 namespace Examples
@@ -100,7 +97,7 @@ noncomputable def numberFieldAlgorithm :
 /-- The outer data-Hom profunctor for the representable Neukirch--Uchida package. -/
 noncomputable abbrev numberFieldOuterDataHom :
     Profunctor.{u + 1} (Core (NumberFieldCat.{u}ᵒᵖ)) (Core (NumberFieldCat.{u}ᵒᵖ)) :=
-  dataHomProfunctor absGalNumberField
+  absGalNumberField.imageHomProfunctor
 
 /--
 The co-Yoneda/density comparison for replacing outer profinite groups by actual profinite groups.

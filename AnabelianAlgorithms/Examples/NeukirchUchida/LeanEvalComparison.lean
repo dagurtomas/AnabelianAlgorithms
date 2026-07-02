@@ -23,8 +23,6 @@ The concrete absolute-Galois reconstruction helpers live in
 
 @[expose] public section
 
-set_option linter.nonstandardAxioms false
-
 universe u v w z l
 
 open CategoryTheory
