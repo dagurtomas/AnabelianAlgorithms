@@ -15,11 +15,8 @@ public import AnabelianAlgorithms.Mathlib.NumberField.AbsoluteGalois.NumberField
 
 
 /-!
-# Lean-evaluation wrapper for the Neukirch-Uchida statement
-
-This file exposes the universe-polymorphic form of the Neukirch-Uchida reconstruction statement.
-The concrete absolute-Galois reconstruction helpers live in
-`AnabelianAlgorithms.Mathlib.NumberField.AbsoluteGalois.NeukirchUchidaConcrete`.
+This file derives the existing statement of the Neukirch-Uchida theorem in `lean-eval`
+from the profunctor version in this repo.
 -/
 
 @[expose] public section
