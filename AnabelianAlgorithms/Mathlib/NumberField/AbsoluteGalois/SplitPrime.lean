@@ -4,10 +4,12 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Dagur Asgeirsson
 -/
 
-import Mathlib.Algebra.Field.ZMod
-import Mathlib.Analysis.Polynomial.Basic
-import Mathlib.NumberTheory.RamificationInertia.Galois
-import Mathlib.RingTheory.Ideal.Int
+module
+
+public import Mathlib.Algebra.Field.ZMod
+public import Mathlib.Analysis.Polynomial.Basic
+public import Mathlib.NumberTheory.RamificationInertia.Galois
+public import Mathlib.RingTheory.Ideal.Int
 
 
 /-!
@@ -20,6 +22,8 @@ upstairs ring of integers, compatible by definition with the existing pointwise 
 It also contains the elementary Schur prime-divisor theorem for integer-polynomial values, used as
 an arithmetic prime-producing engine in later phases.
 -/
+
+@[expose] public section
 
 open scoped Pointwise
 

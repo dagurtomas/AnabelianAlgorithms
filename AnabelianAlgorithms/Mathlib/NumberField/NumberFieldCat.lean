@@ -4,9 +4,11 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Dagur Asgeirsson
 -/
 
-import Mathlib.Algebra.Category.Ring.Basic
-import Mathlib.CategoryTheory.ObjectProperty.FullSubcategory
-import Mathlib.NumberTheory.NumberField.Basic
+module
+
+public import Mathlib.Algebra.Category.Ring.Basic
+public import Mathlib.CategoryTheory.ObjectProperty.FullSubcategory
+public import Mathlib.NumberTheory.NumberField.Basic
 
 
 /-!
@@ -16,6 +18,8 @@ This file defines number fields as the full subcategory of commutative rings who
 is a number field in mathlib's sense, together with basic conversions between raw Lean number
 fields and categorical number-field objects.
 -/
+
+@[expose] public section
 
 universe u
 

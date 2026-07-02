@@ -4,9 +4,11 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Christian Merten
 -/
 
-import Mathlib.Algebra.Category.Ring.Under.Property
-import Mathlib.AlgebraicGeometry.Morphisms.AffineAnd
-import AnabelianAlgorithms.Examples.MochizukiThm.FromPi1.FundamentalGroup.AffineColimits
+module
+
+public import Mathlib.Algebra.Category.Ring.Under.Property
+public import Mathlib.AlgebraicGeometry.Morphisms.AffineAnd
+public import AnabelianAlgorithms.Examples.MochizukiThm.FromPi1.FundamentalGroup.AffineColimits
 
 
 /-
@@ -21,6 +23,8 @@ finite colimits of finite-étale covers and prove that pullback preserves them. 
 finite-colimit argument is ported here; the remaining gluing theorem for the category of affine
 morphisms is isolated in `AnabelianAlgorithms.Mathlib.FromPi1.FundamentalGroup.AffineColimits`.
 -/
+
+@[expose] public section
 
 noncomputable section
 

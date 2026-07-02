@@ -4,10 +4,12 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Dagur Asgeirsson
 -/
 
-import Mathlib.CategoryTheory.Comma.StructuredArrow.Basic
-import Mathlib.CategoryTheory.Core
-import Mathlib.CategoryTheory.Quotient
-import Mathlib.Topology.Algebra.Category.ProfiniteGrp.Basic
+module
+
+public import Mathlib.CategoryTheory.Comma.StructuredArrow.Basic
+public import Mathlib.CategoryTheory.Core
+public import Mathlib.CategoryTheory.Quotient
+public import Mathlib.Topology.Algebra.Category.ProfiniteGrp.Basic
 
 
 /-!
@@ -17,6 +19,8 @@ This file defines the quotient category of profinite groups by target-inner conj
 by the example statements and by reusable absolute-Galois scaffolding, so it lives outside the
 example namespace.
 -/
+
+@[expose] public section
 
 universe u
 

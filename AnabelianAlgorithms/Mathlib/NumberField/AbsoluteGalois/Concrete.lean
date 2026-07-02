@@ -4,7 +4,9 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Dagur Asgeirsson
 -/
 
-import AnabelianAlgorithms.Mathlib.NumberField.AbsoluteGalois.Basic
+module
+
+public import AnabelianAlgorithms.Mathlib.NumberField.AbsoluteGalois.Basic
 
 
 /-!
@@ -14,6 +16,8 @@ This file contains reusable scaffolding for comparing absolute Galois groups def
 arbitrary separable closures with the chosen algebraic closures used by
 `NumberField.absGalProfiniteObj`.
 -/
+
+@[expose] public section
 
 universe u
 
@@ -155,7 +159,7 @@ noncomputable def profiniteGalIsoOfClosureIso {K₁ K₂ K₁' K₂' : Type u}
   ProfiniteGrp.ContinuousMulEquiv.toProfiniteGrpIso (galEquivOfClosureIso e σ hσ)
 
 /-- The image of a base element under a closure isomorphism preserving base ranges. -/
-private theorem exists_base_image_of_maps_base_range {K₁ K₂ K₁' K₂' : Type u}
+theorem exists_base_image_of_maps_base_range {K₁ K₂ K₁' K₂' : Type u}
     [Field K₁] [Field K₂] [Field K₁'] [Field K₂'] [Algebra K₁ K₁'] [Algebra K₂ K₂']
     {σ : K₂' ≃+* K₁'}
     (hσbase : (algebraMap K₂ K₂').range.map σ.toRingHom = (algebraMap K₁ K₁').range)
@@ -167,7 +171,7 @@ private theorem exists_base_image_of_maps_base_range {K₁ K₂ K₁' K₂' : Ty
   simpa using hx
 
 /-- A base element has a preimage under a closure isomorphism preserving base ranges. -/
-private theorem exists_base_preimage_of_maps_base_range {K₁ K₂ K₁' K₂' : Type u}
+theorem exists_base_preimage_of_maps_base_range {K₁ K₂ K₁' K₂' : Type u}
     [Field K₁] [Field K₂] [Field K₁'] [Field K₂'] [Algebra K₁ K₁'] [Algebra K₂ K₂']
     {σ : K₂' ≃+* K₁'}
     (hσbase : (algebraMap K₂ K₂').range.map σ.toRingHom = (algebraMap K₁ K₁').range)

@@ -1,11 +1,15 @@
-import Mathlib.RingTheory.Etale.Descent
-import AnabelianAlgorithms.Mathlib.RingTheory.FiniteEtale.Basic
+module
+
+public import Mathlib.RingTheory.Etale.Descent
+public import AnabelianAlgorithms.Mathlib.RingTheory.FiniteEtale.Basic
 
 /-
 This file was copied and adapted from Christian Merten's `pi1` project
 (<https://github.com/chrisflav/pi1>), commit `5c5c0171efc863ce9990171bdf46d7cb5fd582fb`.
 Corresponding source file in that project: `Pi1/RingTheory/FiniteEtale/Descent.lean`.
 -/
+@[expose] public section
+
 universe u v w
 
 open TensorProduct

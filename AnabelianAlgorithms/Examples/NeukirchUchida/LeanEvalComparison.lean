@@ -4,11 +4,13 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Dagur Asgeirsson
 -/
 
-import AnabelianAlgorithms.Examples.NeukirchUchida.Main
-import AnabelianAlgorithms.Mathlib.FieldTheory.Galois.ULift
-import AnabelianAlgorithms.Mathlib.NumberField.AbsoluteGalois.CenterTrivial
-import AnabelianAlgorithms.Mathlib.NumberField.AbsoluteGalois.Concrete
-import AnabelianAlgorithms.Mathlib.NumberField.AbsoluteGalois.NumberFieldCat
+module
+
+public import AnabelianAlgorithms.Examples.NeukirchUchida.Main
+public import AnabelianAlgorithms.Mathlib.FieldTheory.Galois.ULift
+public import AnabelianAlgorithms.Mathlib.NumberField.AbsoluteGalois.CenterTrivial
+public import AnabelianAlgorithms.Mathlib.NumberField.AbsoluteGalois.Concrete
+public import AnabelianAlgorithms.Mathlib.NumberField.AbsoluteGalois.NumberFieldCat
 
 
 /-!
@@ -18,6 +20,8 @@ This file exposes the universe-polymorphic form of the Neukirch-Uchida reconstru
 The concrete absolute-Galois reconstruction helpers live in
 `AnabelianAlgorithms.Mathlib.NumberField.AbsoluteGalois.NeukirchUchidaConcrete`.
 -/
+
+@[expose] public section
 
 set_option linter.nonstandardAxioms false
 
@@ -303,7 +307,7 @@ theorem adjustedClosureIso_induces_phi {K₁ K₂ K₁' K₂' : Type u}
     _ = (ϕ g).toRingEquiv := by rw [hcalc]
 
 
-private theorem baseIsoOfConcrete_eq_of_outerIso {K₁ K₂ K₁' K₂' : Type u}
+theorem baseIsoOfConcrete_eq_of_outerIso {K₁ K₂ K₁' K₂' : Type u}
     [Field K₁] [Field K₂] [Field K₁'] [Field K₂']
     [NumberField K₁] [NumberField K₂] [Algebra K₁ K₁'] [Algebra K₂ K₂']
     [IsSepClosure K₁ K₁'] [IsSepClosure K₂ K₂']

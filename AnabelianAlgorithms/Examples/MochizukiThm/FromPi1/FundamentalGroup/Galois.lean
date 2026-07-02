@@ -3,14 +3,17 @@ Copyright (c) 2025 Christian Merten. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Christian Merten
 -/
-import AnabelianAlgorithms.Examples.MochizukiThm.FromPi1.FundamentalGroup.FiniteEtale
-import Mathlib.AlgebraicGeometry.Morphisms.FlatRank
-import Mathlib.AlgebraicGeometry.Morphisms.QuasiFinite
-import Mathlib.AlgebraicGeometry.Morphisms.WeaklyEtale
-import Mathlib.AlgebraicGeometry.Sites.Fpqc
-import Mathlib.CategoryTheory.Galois.Topology
-import Mathlib.RingTheory.Flat.TorsionFree
-import Mathlib.Topology.Connected.CardComponents
+module
+
+public import AnabelianAlgorithms.Examples.MochizukiThm.FromPi1.FundamentalGroup.FiniteEtale
+public import Mathlib.AlgebraicGeometry.Morphisms.FlatRank
+public import Mathlib.AlgebraicGeometry.Morphisms.QuasiFinite
+public import Mathlib.AlgebraicGeometry.Morphisms.WeaklyEtale
+public import Mathlib.AlgebraicGeometry.Sites.Fpqc
+public import Mathlib.CategoryTheory.Galois.Topology
+public import Mathlib.RingTheory.Flat.TorsionFree
+public import Mathlib.Topology.Connected.CardComponents
+
 -- import AnabelianAlgorithms.Mathlib.RingTheory.Ideal.Quotient.Operations
 -- import Mathlib.AlgebraicGeometry.Morphisms.FormallyUnramified
 -- import Mathlib.AlgebraicGeometry.Morphisms.QuasiFinite
@@ -44,6 +47,8 @@ mathlib APIs or moved into `AnabelianAlgorithms/Mathlib`.  The remaining `FromPi
 are the scheme-level finite-étale category and finite-colimit/gluing construction in
 `FiniteEtale`, `AffineAnd`, and `AffineColimits`.
 -/
+
+@[expose] public section
 
 universe u
 

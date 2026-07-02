@@ -1,10 +1,14 @@
-import Mathlib.RingTheory.TensorProduct.Maps
+module
+
+public import Mathlib.RingTheory.TensorProduct.Maps
 
 /-
 This file was copied and adapted from Christian Merten's `pi1` project
 (<https://github.com/chrisflav/pi1>), commit `5c5c0171efc863ce9990171bdf46d7cb5fd582fb`.
 Corresponding source file in that project: `Pi1/Mathlib/RingTheory/TensorProduct/Basic.lean`.
 -/
+@[expose] public section
+
 open TensorProduct
 
 attribute [local instance] Algebra.TensorProduct.rightAlgebra in

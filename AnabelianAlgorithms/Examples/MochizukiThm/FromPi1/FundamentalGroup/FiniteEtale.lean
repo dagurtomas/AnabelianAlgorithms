@@ -4,10 +4,12 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Christian Merten
 -/
 
-import AnabelianAlgorithms.Examples.MochizukiThm.FromPi1.FundamentalGroup.AffineAnd
-import AnabelianAlgorithms.Mathlib.RingTheory.FiniteEtale.Equalizer
-import Mathlib.AlgebraicGeometry.Morphisms.Etale
-import Mathlib.AlgebraicGeometry.Morphisms.FlatMono
+module
+
+public import AnabelianAlgorithms.Examples.MochizukiThm.FromPi1.FundamentalGroup.AffineAnd
+public import AnabelianAlgorithms.Mathlib.RingTheory.FiniteEtale.Equalizer
+public import Mathlib.AlgebraicGeometry.Morphisms.Etale
+public import Mathlib.AlgebraicGeometry.Morphisms.FlatMono
 
 /-
 This file was copied and adapted from Christian Merten's `pi1` project
@@ -19,6 +21,8 @@ This file was copied and adapted from Christian Merten's `pi1` project
 We say a morphism is finite étale if it is finite and étale. The category `FiniteEtale X` is
 the category of finite etale schemes over `X`.
 -/
+
+@[expose] public section
 
 noncomputable section
 

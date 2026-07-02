@@ -1,11 +1,13 @@
-import Mathlib.Logic.Function.Coequalizer
-import Mathlib.RingTheory.Finiteness.ModuleFinitePresentation
-import Mathlib.AlgebraicGeometry.PullbackCarrier
-import Mathlib.RingTheory.Flat.FaithfullyFlat.Descent
-import Mathlib.RingTheory.RingHom.Bijective
-import Mathlib.RingTheory.Spectrum.Prime.Chevalley
-import AnabelianAlgorithms.Mathlib.RingTheory.TensorProduct.Basic
-import AnabelianAlgorithms.Mathlib.RingTheory.FiniteEtale.Descent
+module
+
+public import Mathlib.Logic.Function.Coequalizer
+public import Mathlib.RingTheory.Finiteness.ModuleFinitePresentation
+public import Mathlib.AlgebraicGeometry.PullbackCarrier
+public import Mathlib.RingTheory.Flat.FaithfullyFlat.Descent
+public import Mathlib.RingTheory.RingHom.Bijective
+public import Mathlib.RingTheory.Spectrum.Prime.Chevalley
+public import AnabelianAlgorithms.Mathlib.RingTheory.TensorProduct.Basic
+public import AnabelianAlgorithms.Mathlib.RingTheory.FiniteEtale.Descent
 
 /-
 This file amalgamates material copied and adapted from Christian Merten's `pi1` project
@@ -15,6 +17,8 @@ Corresponding source files in that project:
 - `Pi1/RingTheory/KerTensor.lean`
 - `Pi1/Mathlib/RingTheory/Flat/Equalizer.lean`
 -/
+@[expose] public section
+
 attribute [local instance] Module.FinitePresentation.of_finite_of_finitePresentation
 
 open TensorProduct

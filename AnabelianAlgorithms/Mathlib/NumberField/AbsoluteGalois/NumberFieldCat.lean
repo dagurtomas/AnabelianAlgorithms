@@ -4,8 +4,10 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Dagur Asgeirsson
 -/
 
-import AnabelianAlgorithms.Mathlib.NumberField.AbsoluteGalois.Basic
-import AnabelianAlgorithms.Mathlib.NumberField.NumberFieldCat
+module
+
+public import AnabelianAlgorithms.Mathlib.NumberField.AbsoluteGalois.Basic
+public import AnabelianAlgorithms.Mathlib.NumberField.NumberFieldCat
 
 
 /-!
@@ -15,6 +17,8 @@ This file packages the chosen-closure absolute Galois group as a functor on numb
 and records comparison isomorphisms between raw Lean number fields and their `NumberFieldCat`
 representatives.
 -/
+
+@[expose] public section
 
 universe u
 

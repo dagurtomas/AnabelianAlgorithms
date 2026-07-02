@@ -4,8 +4,10 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Christian Merten
 -/
 
-import Mathlib.AlgebraicGeometry.ColimitsOver
-import Mathlib.AlgebraicGeometry.Morphisms.Flat
+module
+
+public import Mathlib.AlgebraicGeometry.ColimitsOver
+public import Mathlib.AlgebraicGeometry.Morphisms.Flat
 
 /-
 This file was copied and adapted from Christian Merten's `pi1` project
@@ -19,6 +21,8 @@ The finite-colimit construction is ported via affine-base global sections and gl
 base's directed affine cover.  Preservation of finite colimits by flat pullback remains a lower
 boundary.
 -/
+
+@[expose] public section
 
 noncomputable section
 

@@ -4,8 +4,10 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Dagur Asgeirsson
 -/
 
-import Lean.Elab.DefView
-import Lean.Linter.Basic
+module
+
+public import Lean.Elab.DefView
+public import Lean.Linter.Basic
 
 /-!
 # Linter for nonstandard axioms
@@ -21,6 +23,8 @@ looks them up in this cache, recursively filling missing cache entries on demand
 entries are exported in `.olean` files, so downstream checks can reuse them without re-traversing
 long imported dependency chains.
 -/
+
+@[expose] public section
 
 open Lean Elab Command Linter
 

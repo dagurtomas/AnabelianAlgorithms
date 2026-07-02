@@ -1,12 +1,16 @@
-import Mathlib.Algebra.Lie.OfAssociative
-import Mathlib.RingTheory.RingHom.Etale
-import Mathlib.RingTheory.TotallySplit
+module
+
+public import Mathlib.Algebra.Lie.OfAssociative
+public import Mathlib.RingTheory.RingHom.Etale
+public import Mathlib.RingTheory.TotallySplit
 
 /-
 This file was copied and adapted from Christian Merten's `pi1` project
 (<https://github.com/chrisflav/pi1>), commit `5c5c0171efc863ce9990171bdf46d7cb5fd582fb`.
 Corresponding source file in that project: `Pi1/RingTheory/FiniteEtale/Basic.lean`.
 -/
+@[expose] public section
+
 open TensorProduct
 
 universe u

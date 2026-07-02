@@ -4,9 +4,11 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Dagur Asgeirsson
 -/
 
-import Mathlib.Algebra.Field.ULift
-import Mathlib.FieldTheory.Galois.Profinite
-import Mathlib.NumberTheory.NumberField.Basic
+module
+
+public import Mathlib.Algebra.Field.ULift
+public import Mathlib.FieldTheory.Galois.Profinite
+public import Mathlib.NumberTheory.NumberField.Basic
 
 
 /-!
@@ -16,13 +18,15 @@ This file collects reusable `ULift` transport for number-field structures, separ
 Galois groups, ring equivalences, and embedded base-field ranges.
 -/
 
+@[expose] public section
+
 universe u v w z l
 
 open Polynomial
 open scoped NumberField
 
 /-- Universe-polymorphic transport of algebraic closedness along a field isomorphism. -/
-private theorem isAlgClosed_of_ringEquiv' {k : Type u} (k' : Type v) [Field k] [Field k']
+theorem isAlgClosed_of_ringEquiv' {k : Type u} (k' : Type v) [Field k] [Field k']
     (e : k ≃+* k') [IsAlgClosed k] : IsAlgClosed k' := by
   apply IsAlgClosed.of_exists_root
   intro p hmp hp
@@ -93,7 +97,7 @@ variable {K : Type u} {K' : Type v} [Field K] [Field K'] [Algebra K K']
 noncomputable local instance : Algebra (ULift.{w} K) (ULift.{w} K') := uliftAlgebra
 
 /-- Lower an intermediate field of the lifted extension. -/
-private noncomputable def lowerIntermediateField
+noncomputable def lowerIntermediateField
     (E : IntermediateField (ULift.{w} K) (ULift.{w} K')) : IntermediateField K K' where
   __ := E.toSubfield.comap (ULift.ringEquiv.symm : K' ≃+* ULift.{w} K').toRingHom
   algebraMap_mem' x := by
@@ -104,12 +108,12 @@ private noncomputable def lowerIntermediateField
     exact h
 
 @[simp]
-private theorem mem_lowerIntermediateField
+theorem mem_lowerIntermediateField
     (E : IntermediateField (ULift.{w} K) (ULift.{w} K')) (x : K') :
     x ∈ lowerIntermediateField E ↔ ULift.up x ∈ E :=
   Iff.rfl
 
-private noncomputable def lowerIntermediateFieldRingEquiv
+noncomputable def lowerIntermediateFieldRingEquiv
     (E : IntermediateField (ULift.{w} K) (ULift.{w} K')) :
     E ≃+* lowerIntermediateField E where
   toFun x := ⟨x.1.down, by
@@ -125,7 +129,7 @@ private noncomputable def lowerIntermediateFieldRingEquiv
   map_mul' x y := by ext; rfl
   map_add' x y := by ext; rfl
 
-private theorem lowerIntermediateField_finiteDimensional
+theorem lowerIntermediateField_finiteDimensional
     (E : IntermediateField (ULift.{w} K) (ULift.{w} K'))
     [FiniteDimensional (ULift.{w} K) E] : FiniteDimensional K (lowerIntermediateField E) := by
   have hfin : Module.finrank (ULift.{w} K) E = Module.finrank K (lowerIntermediateField E) := by
@@ -141,7 +145,7 @@ private theorem lowerIntermediateField_finiteDimensional
   exact FiniteDimensional.of_finrank_pos hpos'
 
 /-- Lift an intermediate field of the original extension. -/
-private noncomputable def liftIntermediateField
+noncomputable def liftIntermediateField
     (E : IntermediateField K K') : IntermediateField (ULift.{w} K) (ULift.{w} K') where
   __ := E.toSubfield.comap (ULift.ringEquiv : ULift.{w} K' ≃+* K').toRingHom
   algebraMap_mem' x := by
@@ -149,12 +153,12 @@ private noncomputable def liftIntermediateField
     exact E.algebraMap_mem x.down
 
 @[simp]
-private theorem mem_liftIntermediateField
+theorem mem_liftIntermediateField
     (E : IntermediateField K K') (x : ULift.{w} K') :
     x ∈ liftIntermediateField E ↔ x.down ∈ E :=
   Iff.rfl
 
-private noncomputable def liftIntermediateFieldRingEquiv
+noncomputable def liftIntermediateFieldRingEquiv
     (E : IntermediateField K K') : E ≃+* liftIntermediateField E where
   toFun x := ⟨ULift.up x.1, x.2⟩
   invFun x := ⟨x.1.down, x.2⟩
@@ -163,7 +167,7 @@ private noncomputable def liftIntermediateFieldRingEquiv
   map_mul' x y := by ext; rfl
   map_add' x y := by ext; rfl
 
-private theorem liftIntermediateField_finiteDimensional
+theorem liftIntermediateField_finiteDimensional
     (E : IntermediateField K K') [FiniteDimensional K E] :
     FiniteDimensional (ULift.{w} K) (@liftIntermediateField.{u, v, w} K K' _ _ _ E) := by
   have hfin : Module.finrank K E =
@@ -180,7 +184,7 @@ private theorem liftIntermediateField_finiteDimensional
   exact FiniteDimensional.of_finrank_pos hpos'
 
 /-- The multiplicative equivalence on Galois groups induced by `ULift`. -/
-private noncomputable def galULiftMulEquiv :
+noncomputable def galULiftMulEquiv :
     Gal(K'/K) ≃* Gal(ULift.{w} K'/ULift.{w} K) where
   toFun g :=
     AlgEquiv.ofRingEquiv
@@ -196,7 +200,7 @@ private noncomputable def galULiftMulEquiv :
   right_inv h := by ext x; rfl
   map_mul' g h := by ext x; rfl
 
-private theorem continuous_galULiftMulEquiv : Continuous (galULiftMulEquiv :
+theorem continuous_galULiftMulEquiv : Continuous (galULiftMulEquiv :
     Gal(K'/K) → Gal(ULift.{w} K'/ULift.{w} K)) := by
   apply continuous_of_continuousAt_one galULiftMulEquiv
   rw [continuousAt_def]
@@ -222,7 +226,7 @@ private theorem continuous_galULiftMulEquiv : Continuous (galULiftMulEquiv :
   change ULift.up (g x.down) = x
   rw [hfix]
 
-private theorem continuous_galULiftMulEquiv_symm : Continuous ((galULiftMulEquiv :
+theorem continuous_galULiftMulEquiv_symm : Continuous ((galULiftMulEquiv :
     Gal(K'/K) ≃* Gal(ULift.{w} K'/ULift.{w} K)).symm :
       Gal(ULift.{w} K'/ULift.{w} K) → Gal(K'/K)) := by
   apply continuous_of_continuousAt_one (galULiftMulEquiv.symm)
@@ -336,7 +340,7 @@ theorem galULiftEquiv_conj_toRingEquiv {K₁ : Type u} {K₁' : Type v} {K₂' :
   rfl
 
 /-- Membership in the lifted embedded-base-field range is detected after lowering. -/
-private theorem mem_lifted_algebraMap_range_iff {K : Type u} {K' : Type v} [Field K]
+theorem mem_lifted_algebraMap_range_iff {K : Type u} {K' : Type v} [Field K]
     [Field K'] [Algebra K K'] (x : ULift.{l} K') :
     letI : Algebra (ULift.{l} K) (ULift.{l} K') := uliftAlgebra
     x ∈ (algebraMap (ULift.{l} K) (ULift.{l} K')).range ↔
@@ -354,7 +358,7 @@ private theorem mem_lifted_algebraMap_range_iff {K : Type u} {K' : Type v} [Fiel
 
 /-- Mapping a lifted embedded-base-field range by a lifted ring equivalence lowers to the
 corresponding mapped range downstairs. -/
-private theorem mem_uliftRingEquiv_mapped_range_iff {K₂ : Type u} {K₁ : Type v}
+theorem mem_uliftRingEquiv_mapped_range_iff {K₂ : Type u} {K₁ : Type v}
     {K₂' : Type w} {K₁' : Type z} [Field K₂] [Field K₁] [Field K₂'] [Field K₁']
     [Algebra K₂ K₂'] [Algebra K₁ K₁'] (τ : K₂' ≃+* K₁') (y : ULift.{l} K₁') :
     letI : Algebra (ULift.{l} K₂) (ULift.{l} K₂') := uliftAlgebra
@@ -452,14 +456,14 @@ theorem lowerULiftRingEquiv_conj {K₁' : Type u} {K₂' : Type v}
   ext x
   rfl
 
-private theorem isHomeomorph_galULiftEquiv {K : Type u} {K' : Type v} [Field K]
+theorem isHomeomorph_galULiftEquiv {K : Type u} {K' : Type v} [Field K]
     [Field K'] [Algebra K K'] :
     letI : Algebra (ULift.{l} K) (ULift.{l} K') := uliftAlgebra
     IsHomeomorph (galULiftEquiv K K' : Gal(K'/K) → Gal(ULift.{l} K'/ULift.{l} K)) := by
   letI : Algebra (ULift.{l} K) (ULift.{l} K') := uliftAlgebra
   exact (galULiftEquiv K K').toHomeomorph.isHomeomorph
 
-private theorem isHomeomorph_galULiftEquiv_symm {K : Type u} {K' : Type v} [Field K]
+theorem isHomeomorph_galULiftEquiv_symm {K : Type u} {K' : Type v} [Field K]
     [Field K'] [Algebra K K'] :
     letI : Algebra (ULift.{l} K) (ULift.{l} K') := uliftAlgebra
     IsHomeomorph ((galULiftEquiv K K').symm : Gal(ULift.{l} K'/ULift.{l} K) → Gal(K'/K)) := by

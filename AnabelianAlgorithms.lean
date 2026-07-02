@@ -1,22 +1,26 @@
-import AnabelianAlgorithms.Examples.MochizukiThm.Main
-import AnabelianAlgorithms.Examples.NeukirchUchida.LeanEvalComparison
-import AnabelianAlgorithms.Examples.NeukirchUchida.Main
-import AnabelianAlgorithms.Linter.NonstandardAxioms
-import AnabelianAlgorithms.Mathlib.AlgebraicGeometry.FiniteEtale.BaseGalois
-import AnabelianAlgorithms.Mathlib.FieldTheory.Galois.ULift
-import AnabelianAlgorithms.Mathlib.FromPi1.FundamentalGroup.AffineAnd
-import AnabelianAlgorithms.Mathlib.FromPi1.FundamentalGroup.AffineColimits
-import AnabelianAlgorithms.Mathlib.FromPi1.FundamentalGroup.FiniteEtale
-import AnabelianAlgorithms.Mathlib.FromPi1.FundamentalGroup.Galois
-import AnabelianAlgorithms.Mathlib.NumberField.AbsoluteGalois.Basic
-import AnabelianAlgorithms.Mathlib.NumberField.AbsoluteGalois.CenterTrivial
-import AnabelianAlgorithms.Mathlib.NumberField.AbsoluteGalois.Concrete
-import AnabelianAlgorithms.Mathlib.NumberField.AbsoluteGalois.NumberFieldCat
-import AnabelianAlgorithms.Mathlib.NumberField.AbsoluteGalois.SplitPrime
-import AnabelianAlgorithms.Mathlib.NumberField.NumberFieldCat
-import AnabelianAlgorithms.Mathlib.ProfiniteGrpOuter
-import AnabelianAlgorithms.Mathlib.RingTheory.FiniteEtale.Basic
-import AnabelianAlgorithms.Mathlib.RingTheory.FiniteEtale.Descent
-import AnabelianAlgorithms.Mathlib.RingTheory.FiniteEtale.Equalizer
-import AnabelianAlgorithms.Mathlib.RingTheory.Ideal.Quotient.Operations
-import AnabelianAlgorithms.Mathlib.RingTheory.TensorProduct.Basic
+module
+
+public import AnabelianAlgorithms.Examples.MochizukiThm.BaseGalois
+public import AnabelianAlgorithms.Examples.MochizukiThm.FromPi1.FundamentalGroup.AffineAnd
+public import AnabelianAlgorithms.Examples.MochizukiThm.FromPi1.FundamentalGroup.AffineColimits
+public import AnabelianAlgorithms.Examples.MochizukiThm.FromPi1.FundamentalGroup.FiniteEtale
+public import AnabelianAlgorithms.Examples.MochizukiThm.FromPi1.FundamentalGroup.Galois
+public import AnabelianAlgorithms.Examples.MochizukiThm.Main
+public import AnabelianAlgorithms.Examples.NeukirchUchida.LeanEvalComparison
+public import AnabelianAlgorithms.Examples.NeukirchUchida.Main
+public import AnabelianAlgorithms.Linter.NonstandardAxioms
+public import AnabelianAlgorithms.Mathlib.FieldTheory.Galois.ULift
+public import AnabelianAlgorithms.Mathlib.NumberField.AbsoluteGalois.Basic
+public import AnabelianAlgorithms.Mathlib.NumberField.AbsoluteGalois.CenterTrivial
+public import AnabelianAlgorithms.Mathlib.NumberField.AbsoluteGalois.Concrete
+public import AnabelianAlgorithms.Mathlib.NumberField.AbsoluteGalois.NumberFieldCat
+public import AnabelianAlgorithms.Mathlib.NumberField.AbsoluteGalois.SplitPrime
+public import AnabelianAlgorithms.Mathlib.NumberField.NumberFieldCat
+public import AnabelianAlgorithms.Mathlib.ProfiniteGrpOuter
+public import AnabelianAlgorithms.Mathlib.RingTheory.FiniteEtale.Basic
+public import AnabelianAlgorithms.Mathlib.RingTheory.FiniteEtale.Descent
+public import AnabelianAlgorithms.Mathlib.RingTheory.FiniteEtale.Equalizer
+public import AnabelianAlgorithms.Mathlib.RingTheory.Ideal.Quotient.Operations
+public import AnabelianAlgorithms.Mathlib.RingTheory.TensorProduct.Basic
+
+@[expose] public section

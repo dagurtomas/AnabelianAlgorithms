@@ -4,9 +4,11 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Dagur Asgeirsson
 -/
 
-import AnabelianAlgorithms.Linter.NonstandardAxioms
-import AnabelianAlgorithms.Examples.MochizukiThm.BaseGalois
-import AnabelianLib.Framework.HomForm
+module
+
+public import AnabelianAlgorithms.Linter.NonstandardAxioms
+public import AnabelianAlgorithms.Examples.MochizukiThm.BaseGalois
+public import AnabelianLib.Framework.HomForm
 
 /-!
 # Standalone Hom-form statement for proper hyperbolic curves over `p`-adic local fields
@@ -26,6 +28,8 @@ current representative presentation, and the final Hom-form theorem.  The next r
 replace the representative bookkeeping laws by an explicit quotient/torsor for change of geometric
 point.
 -/
+
+@[expose] public section
 
 set_option linter.nonstandardAxioms false
 

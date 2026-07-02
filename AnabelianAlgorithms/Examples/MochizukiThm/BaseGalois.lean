@@ -4,8 +4,10 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Dagur Asgeirsson
 -/
 
-import AnabelianAlgorithms.Examples.MochizukiThm.FromPi1.FundamentalGroup.Galois
-import Mathlib
+module
+
+public import AnabelianAlgorithms.Examples.MochizukiThm.FromPi1.FundamentalGroup.Galois
+public import Mathlib
 
 /-!
 # Base Galois action on finite étale fibers
@@ -15,6 +17,8 @@ This file constructs the scheme-level action of `Gal(Ω/K)` on the finite-étale
 `Spec` is contravariant, the fiber map attached to `σ` uses the scheme automorphism induced by
 `σ⁻¹`, and `fiberSchemeMap (σ * τ) = fiberSchemeMap τ ≫ fiberSchemeMap σ`.
 -/
+
+@[expose] public section
 
 noncomputable section
 

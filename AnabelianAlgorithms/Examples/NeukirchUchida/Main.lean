@@ -4,9 +4,11 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Dagur Asgeirsson
 -/
 
-import AnabelianAlgorithms.Linter.NonstandardAxioms
-import AnabelianLib.Framework.IsoForm
-import AnabelianAlgorithms.Mathlib.NumberField.AbsoluteGalois.NumberFieldCat
+module
+
+public import AnabelianAlgorithms.Linter.NonstandardAxioms
+public import AnabelianLib.Framework.IsoForm
+public import AnabelianAlgorithms.Mathlib.NumberField.AbsoluteGalois.NumberFieldCat
 
 
 /-!
@@ -20,6 +22,8 @@ Neukirch--Uchida equivalence.  The co-Yoneda/density comparison for the quotient
 outer profinite groups is supplied by the framework from fullness and essential surjectivity on
 cores.
 -/
+
+@[expose] public section
 
 universe u
 
