@@ -6,7 +6,10 @@ Authors: Dagur Asgeirsson
 
 module
 
-public import Mathlib
+public import Mathlib.Algebra.Category.CommAlgCat.Basic
+public import Mathlib.Algebra.CharP.Algebra
+public import Mathlib.LinearAlgebra.FiniteDimensional.Defs
+public import Mathlib.NumberTheory.Padics.PadicNumbers
 
 /-!
 # Finite extensions of `ℚ_[p]`
@@ -26,12 +29,6 @@ namespace MochizukiLocalProP
 namespace ProperHyperbolicCurveHomStandalone
 
 open CategoryTheory
-open CategoryTheory.PreGaloisCategory
-open AlgebraicGeometry
-open Opposite
-open TopologicalSpace
-open Order
-open scoped FintypeCatDiscrete
 
 /-! ## Finite extensions of `ℚ_[p]` -/
 

@@ -7,6 +7,12 @@ Authors: Dagur Asgeirsson
 module
 
 public import AnabelianAlgorithms.Examples.MochizukiThm.PadicLocalField
+public import Mathlib.Algebra.Category.Grp.AB
+public import Mathlib.AlgebraicGeometry.Morphisms.Proper
+public import Mathlib.CategoryTheory.Abelian.GrothendieckAxioms.Sheaf
+public import Mathlib.CategoryTheory.Abelian.GrothendieckCategory.HasExt
+public import Mathlib.CategoryTheory.Sites.SheafCohomology.Basic
+public import Mathlib.Combinatorics.Quiver.ReflQuiver
 
 /-!
 # Structure-sheaf cohomology used by the curve package
@@ -27,12 +33,8 @@ namespace MochizukiLocalProP
 namespace ProperHyperbolicCurveHomStandalone
 
 open CategoryTheory
-open CategoryTheory.PreGaloisCategory
 open AlgebraicGeometry
 open Opposite
-open TopologicalSpace
-open Order
-open scoped FintypeCatDiscrete
 
 /-! ## Structure-sheaf cohomology and arithmetic genus -/
 

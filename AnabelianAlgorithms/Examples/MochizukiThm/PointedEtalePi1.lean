@@ -7,6 +7,7 @@ Authors: Dagur Asgeirsson
 module
 
 public import AnabelianAlgorithms.Examples.MochizukiThm.PointedEtalePi1.Curve
+public import AnabelianAlgorithms.Examples.MochizukiThm.PointedEtalePi1.OuterFunctoriality
 
 /-!
 # Pointed arithmetic étale fundamental groups

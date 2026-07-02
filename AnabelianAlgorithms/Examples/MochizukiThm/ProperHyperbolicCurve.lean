@@ -7,6 +7,16 @@ Authors: Dagur Asgeirsson
 module
 
 public import AnabelianAlgorithms.Examples.MochizukiThm.StructureSheafCohomology
+public import Mathlib.AlgebraicGeometry.Geometrically.Connected
+public import Mathlib.AlgebraicGeometry.Morphisms.SchemeTheoreticallyDominant
+public import Mathlib.AlgebraicGeometry.QuasiAffine
+public import Mathlib.AlgebraicGeometry.ZariskisMainTheorem
+public import Mathlib.AlgebraicTopology.SimplexCategory.Basic
+public import Mathlib.CategoryTheory.Widesubcategory
+public import Mathlib.Order.CompletePartialOrder
+public import Mathlib.RingTheory.KrullDimension.Field
+public import Mathlib.RingTheory.KrullDimension.Polynomial
+public import Mathlib.RingTheory.PicardGroup
 
 /-!
 # Proper hyperbolic curves over `p`-adic local fields
@@ -26,12 +36,10 @@ namespace MochizukiLocalProP
 namespace ProperHyperbolicCurveHomStandalone
 
 open CategoryTheory
-open CategoryTheory.PreGaloisCategory
 open AlgebraicGeometry
 open Opposite
 open TopologicalSpace
 open Order
-open scoped FintypeCatDiscrete
 
 /-! ## Proper hyperbolic curves -/
 

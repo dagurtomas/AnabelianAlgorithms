@@ -7,7 +7,14 @@ Authors: Dagur Asgeirsson
 module
 
 public import AnabelianAlgorithms.Examples.MochizukiThm.FromPi1.FundamentalGroup.Galois
-public import Mathlib
+public import Mathlib.Algebra.Algebra.IsSimpleRing
+public import Mathlib.AlgebraicTopology.FundamentalGroupoid.SimplyConnected
+public import Mathlib.CategoryTheory.Galois.IsFundamentalgroup
+public import Mathlib.Combinatorics.Quiver.ReflQuiver
+public import Mathlib.FieldTheory.Galois.Profinite
+public import Mathlib.RingTheory.Etale.Finite
+public import Mathlib.RingTheory.Etale.Weakly
+public import Mathlib.RingTheory.SimpleRing.Principal
 
 /-!
 # Base Galois action on finite étale fibers

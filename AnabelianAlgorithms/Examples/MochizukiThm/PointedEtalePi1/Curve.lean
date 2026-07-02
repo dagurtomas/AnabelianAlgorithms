@@ -6,7 +6,9 @@ Authors: Dagur Asgeirsson
 
 module
 
-public import AnabelianAlgorithms.Examples.MochizukiThm.PointedEtalePi1.OuterFunctoriality
+public import AnabelianAlgorithms.Examples.MochizukiThm.BaseGalois
+public import AnabelianAlgorithms.Examples.MochizukiThm.PointedEtalePi1.Basic
+public import AnabelianAlgorithms.Examples.MochizukiThm.ProperHyperbolicCurve
 
 /-!
 # Pointed arithmetic étale fundamental groups of proper hyperbolic curves

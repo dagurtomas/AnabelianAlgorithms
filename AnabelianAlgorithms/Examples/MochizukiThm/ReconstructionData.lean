@@ -8,7 +8,7 @@ module
 
 import all AnabelianAlgorithms.Linter.NonstandardAxioms
 public import AnabelianAlgorithms.Examples.MochizukiThm.PointedEtalePi1
-public import AnabelianLib.Framework.HomForm
+public import Mathlib.CategoryTheory.Profunctor.Basic
 
 /-!
 # Profinite reconstruction data for the Mochizuki Hom-form example

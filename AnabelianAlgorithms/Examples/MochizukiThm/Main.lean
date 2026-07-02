@@ -8,6 +8,7 @@ module
 
 import all AnabelianAlgorithms.Linter.NonstandardAxioms
 public import AnabelianAlgorithms.Examples.MochizukiThm.ReconstructionData
+public import AnabelianLib.Framework.HomForm
 
 /-!
 # Standalone Hom-form statement for proper hyperbolic curves over `p`-adic local fields

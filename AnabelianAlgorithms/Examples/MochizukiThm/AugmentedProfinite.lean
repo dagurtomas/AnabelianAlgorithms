@@ -6,7 +6,16 @@ Authors: Dagur Asgeirsson
 
 module
 
-public import Mathlib
+public import Mathlib.CategoryTheory.Comma.StructuredArrow.Basic
+public import Mathlib.CategoryTheory.Quotient
+public import Mathlib.CategoryTheory.Widesubcategory
+public import Mathlib.Combinatorics.Quiver.ReflQuiver
+public import Mathlib.Topology.Algebra.Category.ProfiniteGrp.Basic
+public import Mathlib.Topology.Algebra.ClopenNhdofOne
+public import Mathlib.Topology.Algebra.Group.OpenMapping
+public import Mathlib.Topology.Baire.LocallyCompactRegular
+public import Mathlib.Topology.Compactness.Paracompact
+public import Mathlib.Topology.Separation.CompletelyRegular
 
 /-!
 # Augmented profinite groups and outer morphisms
@@ -97,12 +106,6 @@ namespace MochizukiLocalProP
 namespace ProperHyperbolicCurveHomStandalone
 
 open CategoryTheory
-open CategoryTheory.PreGaloisCategory
-open AlgebraicGeometry
-open Opposite
-open TopologicalSpace
-open Order
-open scoped FintypeCatDiscrete
 
 /-! ## Augmented profinite groups and outer morphisms -/
 

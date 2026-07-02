@@ -7,8 +7,9 @@ Authors: Dagur Asgeirsson
 module
 
 public import AnabelianAlgorithms.Examples.MochizukiThm.AugmentedProfinite
-public import AnabelianAlgorithms.Examples.MochizukiThm.BaseGalois
-public import AnabelianAlgorithms.Examples.MochizukiThm.ProperHyperbolicCurve
+public import AnabelianAlgorithms.Examples.MochizukiThm.FromPi1.FundamentalGroup.Galois
+public import Mathlib.CategoryTheory.Galois.Equivalence
+public import Mathlib.Topology.Algebra.Module.TransferInstance
 
 /-!
 # Pointed arithmetic étale fundamental groups: basic constructions
