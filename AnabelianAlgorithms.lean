@@ -1,10 +1,19 @@
 module
 
+public import AnabelianAlgorithms.Examples.MochizukiThm.AugmentedProfinite
 public import AnabelianAlgorithms.Examples.MochizukiThm.BaseGalois
 public import AnabelianAlgorithms.Examples.MochizukiThm.FromPi1.FundamentalGroup.AffineAnd
 public import AnabelianAlgorithms.Examples.MochizukiThm.FromPi1.FundamentalGroup.AffineColimits
 public import AnabelianAlgorithms.Examples.MochizukiThm.FromPi1.FundamentalGroup.FiniteEtale
 public import AnabelianAlgorithms.Examples.MochizukiThm.FromPi1.FundamentalGroup.Galois
+public import AnabelianAlgorithms.Examples.MochizukiThm.PadicLocalField
+public import AnabelianAlgorithms.Examples.MochizukiThm.StructureSheafCohomology
+public import AnabelianAlgorithms.Examples.MochizukiThm.ProperHyperbolicCurve
+public import AnabelianAlgorithms.Examples.MochizukiThm.PointedEtalePi1.Basic
+public import AnabelianAlgorithms.Examples.MochizukiThm.PointedEtalePi1.OuterFunctoriality
+public import AnabelianAlgorithms.Examples.MochizukiThm.PointedEtalePi1.Curve
+public import AnabelianAlgorithms.Examples.MochizukiThm.PointedEtalePi1
+public import AnabelianAlgorithms.Examples.MochizukiThm.ReconstructionData
 public import AnabelianAlgorithms.Examples.MochizukiThm.Main
 public import AnabelianAlgorithms.Examples.NeukirchUchida.LeanEvalComparison
 public import AnabelianAlgorithms.Examples.NeukirchUchida.Main
@@ -22,3 +31,12 @@ public import AnabelianAlgorithms.Mathlib.RingTheory.FiniteEtale.Descent
 public import AnabelianAlgorithms.Mathlib.RingTheory.FiniteEtale.Equalizer
 public import AnabelianAlgorithms.Mathlib.RingTheory.Ideal.Quotient.Operations
 public import AnabelianAlgorithms.Mathlib.RingTheory.TensorProduct.Basic
+
+/-!
+# AnabelianAlgorithms
+
+Umbrella module for the project-local anabelian-algorithm examples and supporting Mathlib-style
+lemmas.
+-/
+
+@[expose] public section
