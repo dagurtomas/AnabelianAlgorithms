@@ -8,6 +8,7 @@ module
 
 public import Lean.Elab.DefView
 public import Lean.Linter.Basic
+public meta import Lean.Util.CollectAxioms
 
 /-!
 # Linter for nonstandard axioms
@@ -17,11 +18,11 @@ transitively depends on one.  The standard Lean axioms `Classical.choice`, `Quot
 `propext` are ignored.  The `sorryAx` axiom is reported, so declarations that transitively depend
 on a `sorry` remain visible even when Lean's built-in direct `sorry` warning does not fire.
 
-The linter maintains an environment cache from declarations to the nonstandard axioms in their
-transitive dependency closure.  For each new declaration, it only inspects direct dependencies and
-looks them up in this cache, recursively filling missing cache entries on demand.  Positive cache
-entries are exported in `.olean` files, so downstream checks can reuse them without re-traversing
-long imported dependency chains.
+The linter delegates dependency traversal to Lean's built-in `collectAxioms`, whose environment
+extension exports axiom data for every exported declaration in a module.  Downstream checks can
+therefore query imported declarations without walking their bodies across module boundaries; this is
+important under Lean's module system, where naïve positive-only caches still force repeated
+traversals of large standard imported dependency closures.
 -/
 
 open Lean Elab Command Linter
@@ -80,97 +81,14 @@ def sortAxiomNames (names : Array Name) : Array Name := Id.run do
     set := set.insert name
   return set.toArray.qsort Name.lt
 
-/-- Merge two arrays of axiom names, keeping stable sorted output. -/
-def mergeAxiomNames (xs ys : Array Name) : Array Name :=
-  sortAxiomNames <| ys.foldl (init := xs) fun acc name ↦ acc.push name
+/-- Raw nonstandard axioms used by a declaration, before applying the user ignore option.
 
-/-- Cache entries record the nonstandard axioms in the transitive closure of a declaration. -/
-abbrev NonstandardAxiomCache := NameMap (Array Name)
-
-/-- Insert a cache entry, keeping the axiom list canonical. -/
-def insertNonstandardAxiomCacheEntry
-    (cache : NonstandardAxiomCache) (entry : Name × Array Name) : NonstandardAxiomCache :=
-  cache.insert entry.1 (sortAxiomNames entry.2)
-
-/-- Persistent environment cache of transitive nonstandard-axiom dependencies.
-
-The current module's environment state stores both positive and empty results, so later declarations
-in the same file can use negative cache entries too.  The exported `.olean` entries are filtered to
-positive results, which registers declarations known to depend on nonstandard axioms without
-persisting every standard declaration that the linter inspected.
+This uses Lean's module-system-aware axiom cache.  Imported declarations are looked up from data
+stored in their `.olean`s, including declarations whose axiom set is empty, so this query does not
+recurse through large imported standard-library closures.
 -/
-initialize nonstandardAxiomCacheExt :
-    SimplePersistentEnvExtension (Name × Array Name) NonstandardAxiomCache ←
-  registerSimplePersistentEnvExtension {
-    addImportedFn := mkStateFromImportedEntries insertNonstandardAxiomCacheEntry {}
-    addEntryFn := insertNonstandardAxiomCacheEntry
-    toArrayFn := fun entries ↦
-      entries.toArray.filter (fun entry ↦ !entry.2.isEmpty) |>.qsort fun a b ↦ Name.lt a.1 b.1
-    asyncMode := .sync
-  }
-
-/-- Direct constants used by a constant, without recursively traversing those constants. -/
-def directDependenciesOf (env : Environment) (declName : Name) : NameSet :=
-  let addExpr (deps : NameSet) (e : Expr) : NameSet :=
-    e.getUsedConstants.foldl (init := deps) fun deps name ↦ deps.insert name
-  match env.find? declName with
-  | some (ConstantInfo.axiomInfo v) =>
-      addExpr {} v.type
-  | some (ConstantInfo.defnInfo v) =>
-      addExpr (addExpr {} v.type) v.value
-  | some (ConstantInfo.thmInfo v) =>
-      addExpr (addExpr {} v.type) v.value
-  | some (ConstantInfo.opaqueInfo v) =>
-      addExpr (addExpr {} v.type) v.value
-  | some (ConstantInfo.quotInfo _) =>
-      {}
-  | some (ConstantInfo.ctorInfo v) =>
-      addExpr {} v.type
-  | some (ConstantInfo.recInfo v) =>
-      addExpr {} v.type
-  | some (ConstantInfo.inductInfo v) =>
-      v.ctors.foldl (init := addExpr {} v.type) fun deps ctor ↦ deps.insert ctor
-  | none =>
-      {}
-
-/-- True if the declaration is an axiom that is not part of Lean's standard foundation. -/
-def isRawNonstandardAxiom (env : Environment) (name : Name) : Bool :=
-  match env.find? name with
-  | some (ConstantInfo.axiomInfo _) => !isIgnoredAxiom name
-  | _ => false
-
-/-- Compute transitive nonstandard-axiom dependencies, using and updating a cache.
-
-The recursion only follows direct dependencies whose transitive axiom sets have not already been
-cached. -/
-partial def rawNonstandardAxiomsOfAux (env : Environment) (declName : Name)
-    (visiting : NameSet) (cache : NonstandardAxiomCache) :
-    CommandElabM (Array Name × NonstandardAxiomCache) := do
-  if let some axioms := cache.find? declName then
-    return (axioms, cache)
-  if visiting.contains declName then
-    return (#[], cache)
-  let visiting := visiting.insert declName
-  let mut axioms : Array Name := if isRawNonstandardAxiom env declName then #[declName] else #[]
-  let mut cache := cache
-  for dep in directDependenciesOf env declName do
-    let (depAxioms, cache') ← rawNonstandardAxiomsOfAux env dep visiting cache
-    cache := cache'
-    axioms := mergeAxiomNames axioms depAxioms
-  axioms := sortAxiomNames axioms
-  cache := cache.insert declName axioms
-  return (axioms, cache)
-
-/-- Raw nonstandard axioms used by a declaration, before applying the user ignore option. -/
 def rawNonstandardAxiomsOf (declName : Name) : CommandElabM (Array Name) := do
-  let env ← getEnv
-  let cache := nonstandardAxiomCacheExt.getState env
-  let (axioms, cache) ← rawNonstandardAxiomsOfAux env declName {} cache
-  modifyEnv fun env ↦ nonstandardAxiomCacheExt.setState env cache
-  unless axioms.isEmpty do
-    modifyEnv fun env ↦
-      nonstandardAxiomCacheExt.addEntry (asyncDecl := declName) env (declName, axioms)
-  return axioms
+  return sortAxiomNames <| (← collectAxioms declName).filter (!isIgnoredAxiom ·)
 
 /-- The nonstandard axioms used by a declaration after applying user ignore options. -/
 def nonstandardAxiomsOf (declName : Name) (ignored : NameSet) : CommandElabM (Array Name) := do
