@@ -9,6 +9,7 @@ module
 public import AnabelianAlgorithms.Examples.MochizukiThm.AugmentedProfinite
 public import AnabelianAlgorithms.Examples.MochizukiThm.FromPi1.FundamentalGroup.Galois
 public import Mathlib.CategoryTheory.Galois.Equivalence
+public import Mathlib.Data.Fintype.Shrink
 public import Mathlib.Topology.Algebra.Module.TransferInstance
 
 /-!
@@ -213,6 +214,7 @@ noncomputable def finiteEtaleCoverOfIsFiniteEtale {X Y : Scheme.{u}} (f : X ⟶ 
 
 /-! ## Finite-étale test covers -/
 
+set_option backward.isDefEq.respectTransparency.types false in
 /-- The terminal finite-étale cover of a scheme, represented by the identity morphism. -/
 noncomputable def finiteEtaleTerminal (X : Scheme.{u}) : AlgebraicGeometry.FiniteEtale X :=
   MorphismProperty.Over.mk ⊤ (𝟙 X)
@@ -312,9 +314,9 @@ lemma pointedEtalePi1Map_hom_app {X Y : Scheme.{u}} [ConnectedSpace X] [Connecte
     (ξ : Spec (.of Ω) ⟶ X) (f : X ⟶ Y)
     (τ : Aut (AlgebraicGeometry.FiniteEtale.fiber ξ))
     (A : AlgebraicGeometry.FiniteEtale Y) :
-    ((pointedEtalePi1Map ξ f).hom τ).hom.app A =
+    ((pointedEtalePi1Map ξ f).hom τ).asIso.hom.app A =
       (fiberCompIso ξ f).hom.app A ≫
-        τ.hom.app ((AlgebraicGeometry.FiniteEtale.pullback f).obj A) ≫
+        τ.asIso.hom.app ((AlgebraicGeometry.FiniteEtale.pullback f).obj A) ≫
           (fiberCompIso ξ f).inv.app A :=
   rfl
 
@@ -392,7 +394,7 @@ noncomputable def finiteEtaleSectionOfFixedFiberPoint {X : Scheme.{u}} [Connecte
     {Ω : Type u} [Field Ω] [IsSepClosed Ω] (ξ : Spec (.of Ω) ⟶ X)
     (B : AlgebraicGeometry.FiniteEtale X)
     (b : (AlgebraicGeometry.FiniteEtale.fiber ξ).obj B)
-    (hb : ∀ τ : Aut (AlgebraicGeometry.FiniteEtale.fiber ξ), τ.hom.app B b = b) :
+    (hb : ∀ τ : Aut (AlgebraicGeometry.FiniteEtale.fiber ξ), τ.asIso.hom.app B b = b) :
     finiteEtaleTerminal X ⟶ B := by
   let F := AlgebraicGeometry.FiniteEtale.fiber ξ
   let T := finiteEtaleTerminal X
@@ -401,7 +403,7 @@ noncomputable def finiteEtaleSectionOfFixedFiberPoint {X : Scheme.{u}} [Connecte
       comm := by
         intro τ
         ext t
-        change b = τ.hom.app B b
+        change b = τ.asIso.hom.app B b
         exact (hb τ).symm }
   exact (functorToAction F).preimage h
 
@@ -410,7 +412,7 @@ lemma finiteEtaleSectionOfFixedFiberPoint_fiber {X : Scheme.{u}} [ConnectedSpace
     {Ω : Type u} [Field Ω] [IsSepClosed Ω] (ξ : Spec (.of Ω) ⟶ X)
     (B : AlgebraicGeometry.FiniteEtale X)
     (b : (AlgebraicGeometry.FiniteEtale.fiber ξ).obj B)
-    (hb : ∀ τ : Aut (AlgebraicGeometry.FiniteEtale.fiber ξ), τ.hom.app B b = b) :
+    (hb : ∀ τ : Aut (AlgebraicGeometry.FiniteEtale.fiber ξ), τ.asIso.hom.app B b = b) :
     (AlgebraicGeometry.FiniteEtale.fiber ξ).map
       (finiteEtaleSectionOfFixedFiberPoint ξ B b hb) (finiteEtaleTerminalFiberPoint ξ) = b := by
   let F := AlgebraicGeometry.FiniteEtale.fiber ξ
@@ -420,7 +422,7 @@ lemma finiteEtaleSectionOfFixedFiberPoint_fiber {X : Scheme.{u}} [ConnectedSpace
       comm := by
         intro τ
         ext t
-        change b = τ.hom.app B b
+        change b = τ.asIso.hom.app B b
         exact (hb τ).symm }
   change (F.map ((functorToAction F).preimage h)) (finiteEtaleTerminalFiberPoint ξ) = b
   have hmap : (functorToAction F).map ((functorToAction F).preimage h) = h :=
@@ -438,16 +440,16 @@ lemma pointedEtalePi1Map_fixed_pullback_point {X Y : Scheme.{u}}
     (A : AlgebraicGeometry.FiniteEtale Y)
     (b : (AlgebraicGeometry.FiniteEtale.fiber (ξ ≫ f)).obj A)
     (τ : Aut (AlgebraicGeometry.FiniteEtale.fiber ξ))
-    (hb : ((pointedEtalePi1Map ξ f).hom τ).hom.app A b = b) :
-    τ.hom.app ((AlgebraicGeometry.FiniteEtale.pullback f).obj A)
+    (hb : ((pointedEtalePi1Map ξ f).hom τ).asIso.hom.app A b = b) :
+    τ.asIso.hom.app ((AlgebraicGeometry.FiniteEtale.pullback f).obj A)
       ((fiberCompIso ξ f).hom.app A b) =
     (fiberCompIso ξ f).hom.app A b := by
   have hb' : ((fiberCompIso ξ f).hom.app A ≫
-      τ.hom.app ((AlgebraicGeometry.FiniteEtale.pullback f).obj A) ≫
+      τ.asIso.hom.app ((AlgebraicGeometry.FiniteEtale.pullback f).obj A) ≫
         (fiberCompIso ξ f).inv.app A) b = b := by
     simpa using hb
   have hcong := congrArg ((fiberCompIso ξ f).hom.app A) hb'
-  let y := τ.hom.app ((AlgebraicGeometry.FiniteEtale.pullback f).obj A)
+  let y := τ.asIso.hom.app ((AlgebraicGeometry.FiniteEtale.pullback f).obj A)
       ((fiberCompIso ξ f).hom.app A b)
   have hinvhom : (fiberCompIso ξ f).hom.app A ((fiberCompIso ξ f).inv.app A y) = y := by
     have h := ConcreteCategory.congr_hom (Iso.inv_hom_id ((fiberCompIso ξ f).app A)) y
@@ -469,7 +471,7 @@ lemma finiteEtaleSelfFiberPoint_map_of_fixed_pullback_point {X Y : Scheme.{u}}
     (A : AlgebraicGeometry.FiniteEtale Y)
     (b : (AlgebraicGeometry.FiniteEtale.fiber (ξ ≫ f)).obj A)
     (hx : ∀ τ : Aut (AlgebraicGeometry.FiniteEtale.fiber ξ),
-      τ.hom.app ((AlgebraicGeometry.FiniteEtale.pullback f).obj A)
+      τ.asIso.hom.app ((AlgebraicGeometry.FiniteEtale.pullback f).obj A)
         ((fiberCompIso ξ f).hom.app A b) = (fiberCompIso ξ f).hom.app A b) :
     ∃ m : finiteEtaleCoverOfIsFiniteEtale f ⟶ A,
       (AlgebraicGeometry.FiniteEtale.fiber (ξ ≫ f)).map m (finiteEtaleSelfFiberPoint ξ f) = b := by
@@ -590,7 +592,7 @@ theorem finiteEtaleSelfFiberPoint_stabilizer_le_range {X Y : Scheme.{u}}
   obtain ⟨A, ⟨e⟩⟩ := Functor.EssSurj.mem_essImage (F := functorToContAction FY) Q
   let q0 : Q.obj.V := equivShrink.{u, u+1} (G ⧸ V.toSubgroup) (⟦(1 : G)⟧ : G ⧸ V.toSubgroup)
   let b : FY.obj A := e.inv.hom.hom q0
-  have hpre_fixed (τ : Aut FX) : ((pointedEtalePi1Map ξ f).hom τ).hom.app A b = b := by
+  have hpre_fixed (τ : Aut FX) : ((pointedEtalePi1Map ξ f).hom τ).asIso.hom.app A b = b := by
     have hmemR : (pointedEtalePi1Map ξ f).hom τ ∈ R := ⟨τ, rfl⟩
     have hmemV : (pointedEtalePi1Map ξ f).hom τ ∈ V.toSubgroup := hRV hmemR
     have hq : ((pointedEtalePi1Map ξ f).hom τ : G) • q0 = q0 := by
@@ -598,25 +600,25 @@ theorem finiteEtaleSelfFiberPoint_stabilizer_le_range {X Y : Scheme.{u}}
         ((pointedEtalePi1Map ξ f).hom τ)).mpr hmemV
     have hcomm := e.inv.hom.comm ((pointedEtalePi1Map ξ f).hom τ)
     have h := ConcreteCategory.congr_hom hcomm q0
-    change e.inv.hom.hom (ConcreteCategory.hom (Q.obj.ρ ((pointedEtalePi1Map ξ f).hom τ)) q0) =
-        ((pointedEtalePi1Map ξ f).hom τ).hom.app A (e.inv.hom.hom q0) at h
-    rw [show ConcreteCategory.hom (Q.obj.ρ ((pointedEtalePi1Map ξ f).hom τ)) q0 =
+    change e.inv.hom.hom (ConcreteCategory.hom (Q.obj.ρ ((pointedEtalePi1Map ξ f).hom τ)).asHom q0) =
+        ((pointedEtalePi1Map ξ f).hom τ).asIso.hom.app A (e.inv.hom.hom q0) at h
+    rw [show ConcreteCategory.hom (Q.obj.ρ ((pointedEtalePi1Map ξ f).hom τ)).asHom q0 =
         ((pointedEtalePi1Map ξ f).hom τ : G) • q0 by rfl, hq] at h
     exact h.symm
   have hx : ∀ τ : Aut FX,
-      τ.hom.app ((AlgebraicGeometry.FiniteEtale.pullback f).obj A)
+      τ.asIso.hom.app ((AlgebraicGeometry.FiniteEtale.pullback f).obj A)
         ((fiberCompIso ξ f).hom.app A b) = (fiberCompIso ξ f).hom.app A b := by
     intro τ
     exact pointedEtalePi1Map_fixed_pullback_point ξ f A b τ (hpre_fixed τ)
   obtain ⟨m, hm⟩ := finiteEtaleSelfFiberPoint_map_of_fixed_pullback_point ξ f A b hx
-  have hbσ : σ.hom.app A b = b := by
-    have hnat := σ.hom.naturality m
+  have hbσ : σ.asIso.hom.app A b = b := by
+    have hnat := σ.asIso.hom.naturality m
     have h := ConcreteCategory.congr_hom hnat (finiteEtaleSelfFiberPoint ξ f)
-    change σ.hom.app A
+    change σ.asIso.hom.app A
         ((AlgebraicGeometry.FiniteEtale.fiber (ξ ≫ f)).map m (finiteEtaleSelfFiberPoint ξ f)) =
       (AlgebraicGeometry.FiniteEtale.fiber (ξ ≫ f)).map m
-        (σ.hom.app (finiteEtaleCoverOfIsFiniteEtale f) (finiteEtaleSelfFiberPoint ξ f)) at h
-    have hσa : σ.hom.app (finiteEtaleCoverOfIsFiniteEtale f) (finiteEtaleSelfFiberPoint ξ f) =
+        (σ.asIso.hom.app (finiteEtaleCoverOfIsFiniteEtale f) (finiteEtaleSelfFiberPoint ξ f)) at h
+    have hσa : σ.asIso.hom.app (finiteEtaleCoverOfIsFiniteEtale f) (finiteEtaleSelfFiberPoint ξ f) =
         finiteEtaleSelfFiberPoint ξ f := by
       exact (MulAction.mem_stabilizer_iff.mp hσ)
     rw [hm, hσa, hm] at h
@@ -624,8 +626,8 @@ theorem finiteEtaleSelfFiberPoint_stabilizer_le_range {X Y : Scheme.{u}}
   have hqσ : (σ : G) • q0 = q0 := by
     have hcomm := e.hom.hom.comm σ
     have h := ConcreteCategory.congr_hom hcomm b
-    change e.hom.hom.hom (σ.hom.app A b) =
-        ConcreteCategory.hom (Q.obj.ρ σ) (e.hom.hom.hom b) at h
+    change e.hom.hom.hom (σ.asIso.hom.app A b) =
+        ConcreteCategory.hom (Q.obj.ρ σ).asHom (e.hom.hom.hom b) at h
     rw [hbσ] at h
     have hinv : e.hom.hom.hom b = q0 := by
       have h' := ConcreteCategory.congr_hom

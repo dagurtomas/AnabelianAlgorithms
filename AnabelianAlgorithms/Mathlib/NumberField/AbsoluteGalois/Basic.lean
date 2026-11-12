@@ -78,11 +78,11 @@ noncomputable def mulEquivOfEquiv (e : K ≃+* L)
   invFun := invMapOfEquiv e F hF
   left_inv σ := by
     ext x
-    dsimp [mapOfEquiv, invMapOfEquiv]
+    change F (F.symm (σ (F (F.symm x)))) = σ x
     simp
   right_inv τ := by
     ext x
-    dsimp [mapOfEquiv, invMapOfEquiv]
+    change F.symm (F (τ (F.symm (F x)))) = τ x
     simp
   map_mul' σ τ := by
     ext x
@@ -270,11 +270,11 @@ noncomputable def closureMulEquivOfEquiv (e : K ≃+* L) (F : ΩK ≃+* ΩL)
   invFun := closureInvMapOfEquiv e F hF
   left_inv σ := by
     ext x
-    dsimp [closureMapOfEquiv, closureInvMapOfEquiv]
+    change F (F.symm (σ (F (F.symm x)))) = σ x
     simp
   right_inv τ := by
     ext x
-    dsimp [closureMapOfEquiv, closureInvMapOfEquiv]
+    change F.symm (F (τ (F.symm (F x)))) = τ x
     simp
   map_mul' σ τ := by
     ext x
@@ -459,9 +459,7 @@ theorem toProfiniteGrpIso_refl_outerRel (K : Type u) [Field K] [NumberField K] :
   ext y
   rw [show (toProfiniteGrpIso eK).hom = ProfiniteGrp.ofHom (toAbsGalEquiv eK) from rfl]
   rw [ProfiniteGrp.ofHom_apply]
-  dsimp [toAbsGalEquiv, AbsGalConj.continuousMulEquivOfEquiv,
-    AbsGalConj.mulEquivOfEquiv, AbsGalConj.comparisonAut, AbsGalConj.mapOfEquiv,
-    h, hGal, Fid, F]
+  change σ y = F (F.symm (σ (F (F.symm y))))
   simp
 
 @[simp]

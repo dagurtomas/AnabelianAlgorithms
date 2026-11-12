@@ -417,7 +417,6 @@ lemma _root_.IsArtinianRing.equivPi_naturality_apply (R S : Type*) [CommRing R] 
         (IsArtinianRing.equivPi R x) := by
   ext m
   simp [IsArtinianRing.equivPi, IsArtinianRing.quotNilradicalEquivPi]
-  rfl
 
 instance (priority := 900) instIsAffineFiniteEtaleOfAffine [IsAffine X] (Y : FiniteEtale X) :
     IsAffine Y.left := by
@@ -728,7 +727,7 @@ instance galoisCategory (X : Scheme.{u}) [ConnectedSpace X] : GaloisCategory (Fi
     let Ω : Type u := AlgebraicClosure k
     let ξ : Spec (.of Ω) ⟶ X :=
       Spec.map (CommRingCat.ofHom <| algebraMap k Ω) ≫ X.fromSpecResidueField x
-    exact ⟨fiber ξ, ⟨inferInstance⟩⟩
+    exact ⟨fiber ξ, inferInstance⟩
 
 /-- The étale fundamental group of a connected scheme `X` at the geometric point `ξ` is
 the automorphism group of the fiber functor at `ξ`. -/

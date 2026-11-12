@@ -13,7 +13,7 @@ maxSynthPendingDepth = 3
 [[require]]
 name = "anabelianlib"
 git = "https://github.com/dagurtomas/AnabelianLib"
-rev = "main"
+rev = "a8dd78c856cf472035148512f705439203ed0df6"
 
 [[lean_lib]]
 name = "AnabelianAlgorithms"

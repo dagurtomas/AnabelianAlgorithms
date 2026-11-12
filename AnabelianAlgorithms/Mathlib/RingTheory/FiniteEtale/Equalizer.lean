@@ -4,8 +4,10 @@ public import Mathlib.Logic.Function.Coequalizer
 public import Mathlib.RingTheory.Finiteness.ModuleFinitePresentation
 public import Mathlib.AlgebraicGeometry.PullbackCarrier
 public import Mathlib.RingTheory.Flat.FaithfullyFlat.Descent
+public import Mathlib.RingTheory.Flat.Equalizer
 public import Mathlib.RingTheory.RingHom.Bijective
 public import Mathlib.RingTheory.Spectrum.Prime.Chevalley
+public import Mathlib.RingTheory.TensorProduct.Pi
 public import AnabelianAlgorithms.Mathlib.RingTheory.TensorProduct.Basic
 public import AnabelianAlgorithms.Mathlib.RingTheory.FiniteEtale.Descent
 
@@ -1020,7 +1022,9 @@ lemma auxEquivRHS_symm_tmul (f g : A →ₐ[R] B) (T : Type u)
       (algebraMap (T ⊗[R] S) _ (1 ⊗ₜ[R] x)) =
       ⟨1 ⊗ₜ[R] (x ⊗ₜ[R] (1 : A)), by simp⟩ := by
     ext : 1
-    simp [auxEquivRHSCore, AlgHom.equalizerCongr_symm_apply]
+    change (TensorProduct.assoc' R T T S A)
+        ((1 ⊗ₜ[R] x) ⊗ₜ[R] (1 : A)) = 1 ⊗ₜ[R] (x ⊗ₜ[R] 1)
+    rfl
   rw [hcore]
   let fS : S ⊗[R] A →ₐ[R] S ⊗[R] B := TensorProduct.map (.id R S) f
   let gS : S ⊗[R] A →ₐ[R] S ⊗[R] B := TensorProduct.map (.id R S) g
@@ -1211,25 +1215,21 @@ lemma TensorProduct.map_tensorEqualizer_bijective_iff_tensorEqualizer_map_biject
             (TensorProduct.map (.id T T) g)).comp
           eLHS.toAlgHom) := by
     ext x
-    · simp only [TensorProduct.map_restrictScalars_comp_includeRight, AlgHom.coe_comp,
-        Function.comp_apply, TensorProduct.includeLeft_apply, TensorProduct.includeRight_apply,
-        AlgHom.coe_restrictScalars']
-      erw [AlgHom.comp_apply]
-      erw [AlgHom.comp_apply]
-      simp only [AlgEquiv.coe_toAlgHom, auxEquivLHS_one_tmul_one, eLHS]
+    · change 1 ⊗ₜ[R] (AlgHom.tensorEqualizer R S f g) (x ⊗ₜ[R] 1) =
+        eRHS.symm (u (eLHS (1 ⊗ₜ[R] (x ⊗ₜ[R] 1))))
+      rw [show eLHS (1 ⊗ₜ[R] (x ⊗ₜ[R] 1)) = (1 ⊗ₜ[R] x) ⊗ₜ[T] 1 from
+        auxEquivLHS_one_tmul_one f g T x]
       change 1 ⊗ₜ[R] (AlgHom.tensorEqualizer S S f g) (x ⊗ₜ 1) = eRHS.symm
         ((AlgHom.tensorEqualizer (T ⊗[R] S) (T ⊗[R] S)
           (TensorProduct.map (AlgHom.id T T) f) (TensorProduct.map (AlgHom.id T T) g))
           ((1 ⊗ₜ[R] x) ⊗ₜ[T] 1))
       rw [AlgHom.tensorEqualizer_tmul_one, AlgHom.tensorEqualizer_tmul_one,
         auxEquivRHS_symm_tmul]
-    · simp only [TensorProduct.map_restrictScalars_comp_includeRight, AlgHom.coe_comp,
-        AlgHom.coe_restrictScalars', Function.comp_apply, TensorProduct.includeRight_apply,
-        eLHS]
-      erw [AlgHom.comp_apply]
-      erw [AlgHom.comp_apply]
-      simp only [AlgEquiv.coe_toAlgHom]
-      rw [auxEquivLHS_one_one_tmul]
+    · change 1 ⊗ₜ[R] (AlgHom.tensorEqualizer R S f g) (1 ⊗ₜ[R] x) =
+        eRHS.symm (u (eLHS (1 ⊗ₜ[R] (1 ⊗ₜ[R] x))))
+      rw [show eLHS (1 ⊗ₜ[R] (1 ⊗ₜ[R] x)) =
+          1 ⊗ₜ[T] (⟨1 ⊗ₜ[R] (x : A), by simp [show f x.1 = g x.1 from x.2]⟩ :
+            ((T ⊗ₘ f) ≟ₐ (T ⊗ₘ g))) from auxEquivLHS_one_one_tmul f g T x]
       rw [AlgHom.tensorEqualizer_one_tmul]
       rw [AlgHom.tensorEqualizer_one_tmul]
       change 1 ⊗ₜ[R] (⟨1 ⊗ₜ[R] (x : A), by simp [show f x.1 = g x.1 from x.2]⟩ :

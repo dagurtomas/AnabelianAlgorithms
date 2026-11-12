@@ -221,8 +221,7 @@ noncomputable def augProfiniteAsOuterMap {Γ : ProfiniteGrp.{u}}
     change Q.map f.left ≫ Q.map B.hom = Q.map A.hom
     have hw : f.left ≫ B.hom = A.hom := by
       exact f.w
-    rw [← Q.map_comp, hw]
-    rfl)
+    rw [← Q.map_comp, hw])
 
 @[simp]
 theorem augProfiniteAsOuterMap_id {Γ : ProfiniteGrp.{u}} (A : AugProfiniteOver Γ) :

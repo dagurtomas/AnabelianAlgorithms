@@ -169,7 +169,7 @@ theorem isStandardSmoothOfRelativeDimension_one_ringKrullDim_le_of_base_dim_zero
   haveI : Algebra.Etale (MvPolynomial (Fin 1) R) A := RingHom.Etale.toAlgebra hg
   have hpoly : ringKrullDim (MvPolynomial (Fin 1) R) ≤ (1 : WithBot ℕ∞) := by
     rw [MvPolynomial.ringKrullDim_of_isNoetherianRing]
-    rw [Nat.card_eq_fintype_card, Fintype.card_fin]
+    rw [ENat.card_eq_coe_fintype_card, Fintype.card_fin]
     norm_num
     calc
       ringKrullDim R + (1 : WithBot ℕ∞) = (1 : WithBot ℕ∞) + ringKrullDim R := by

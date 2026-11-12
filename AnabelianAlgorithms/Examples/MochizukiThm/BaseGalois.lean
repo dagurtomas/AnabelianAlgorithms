@@ -142,7 +142,7 @@ lemma pullbackMap_fiberSchemeMap (σ : Gal(Ω/K)) {A B : FiniteEtale (Spec (.of 
 /-- The natural automorphism of the finite-étale fiber functor induced by a Galois element. -/
 noncomputable def galToSchemeFiberAut (σ : Gal(Ω/K)) :
     Aut (FiniteEtale.fiber (baseGeom K Ω)) :=
-  NatIso.ofComponents
+  .of <| NatIso.ofComponents
     (fun A ↦ FintypeCat.equivEquivIso (fiberSchemeEquiv K Ω σ A))
     (fun {A B} f ↦ by
       ext x
@@ -187,7 +187,7 @@ noncomputable instance galFiberMulAction (A : FiniteEtale (Spec (.of K))) :
 lemma galToSchemeFiberAutHom_hom_app_apply (σ : Gal(Ω/K))
     (A : FiniteEtale (Spec (.of K)))
     (x : (FiniteEtale.fiber (baseGeom K Ω)).obj A) :
-    (galToSchemeFiberAutHom K Ω σ).hom.app A x = σ • x :=
+    (galToSchemeFiberAutHom K Ω σ).asIso.hom.app A x = σ • x :=
   rfl
 
 /-- The Galois action on finite-étale fibers is natural in scheme-level finite-étale covers. -/
@@ -196,10 +196,10 @@ instance galFiberIsNaturalSMul :
       (FiniteEtale.fiber (baseGeom K Ω)) Gal(Ω/K) where
   naturality σ _ _ f x := by
     change (FiniteEtale.fiber (baseGeom K Ω)).map f
-        ((galToSchemeFiberAutHom K Ω σ).hom.app _ x) =
-      (galToSchemeFiberAutHom K Ω σ).hom.app _
+        ((galToSchemeFiberAutHom K Ω σ).asIso.hom.app _ x) =
+      (galToSchemeFiberAutHom K Ω σ).asIso.hom.app _
         ((FiniteEtale.fiber (baseGeom K Ω)).map f x)
-    exact (NatTrans.naturality_apply (galToSchemeFiberAutHom K Ω σ).hom f x).symm
+    exact (NatTrans.naturality_apply (galToSchemeFiberAutHom K Ω σ).asIso.hom f x).symm
 
 /-- The finite-étale `K`-scheme associated to a finite étale `K`-algebra. -/
 noncomputable def specObj (S : CommAlgCat.FiniteEtale K) :
@@ -406,11 +406,10 @@ lemma liftEquivRight_smul_apply (S : CommAlgCat.FiniteEtale K) (σ : Gal(Ω/K))
       ((σ : Ω →ₐ[K] Ω).comp (φ : S.obj →ₐ[K] Ω))) r =
       σ ((Algebra.TensorProduct.liftEquivRight K Ω S.obj Ω (φ : S.obj →ₐ[K] Ω))
         ((tensorGalAlgEquiv K Ω S σ⁻¹) r)) := by
-  refine TensorProduct.induction_on r ?_ ?_ ?_
-  · simp
-  · intro a s
+  induction r using TensorProduct.inductionOn with
+  | tmul a s =>
     simp [Algebra.TensorProduct.liftEquivRight_apply]
-  · intro x y hx hy
+  | add x y hx hy =>
     rw [map_add, map_add, hx, hy]
     rw [map_add]
     exact (map_add σ
@@ -870,7 +869,7 @@ instance galProfiniteGrpFiberIsNaturalSMul [IsGalois K Ω] :
 lemma galToFiberAut_hom_app_apply [IsGalois K Ω]
     (σ : galProfiniteGrp K Ω) (A : FiniteEtale (Spec (.of K)))
     (x : (FiniteEtale.fiber (baseGeom K Ω)).obj A) :
-    (galToFiberAut K Ω σ).hom.app A x = σ • x :=
+    (galToFiberAut K Ω σ).asIso.hom.app A x = σ • x :=
   rfl
 
 /-- The Galois group of a separably closed Galois extension is a fundamental group for the
@@ -888,16 +887,16 @@ theorem gal_toAut_hom_app_apply [IsGalois K Ω] [IsSepClosed Ω]
     (σ : galProfiniteGrp K Ω) (A : FiniteEtale (Spec (.of K)))
     (x : (FiniteEtale.fiber (baseGeom K Ω)).obj A) :
     (CategoryTheory.PreGaloisCategory.toAut
-      (FiniteEtale.fiber (baseGeom K Ω)) (galProfiniteGrp K Ω) σ).hom.app A x =
-      (galToFiberAut K Ω σ).hom.app A x :=
+      (FiniteEtale.fiber (baseGeom K Ω)) (galProfiniteGrp K Ω) σ).asIso.hom.app A x =
+      (galToFiberAut K Ω σ).asIso.hom.app A x :=
   rfl
 
 /-- Objectwise form of the comparison between the assembled `toAut` map and the explicit action. -/
 theorem gal_toAut_hom_app [IsGalois K Ω] [IsSepClosed Ω]
     (σ : galProfiniteGrp K Ω) (A : FiniteEtale (Spec (.of K))) :
     (CategoryTheory.PreGaloisCategory.toAut
-      (FiniteEtale.fiber (baseGeom K Ω)) (galProfiniteGrp K Ω) σ).hom.app A =
-      (galToFiberAut K Ω σ).hom.app A := by
+      (FiniteEtale.fiber (baseGeom K Ω)) (galProfiniteGrp K Ω) σ).asIso.hom.app A =
+      (galToFiberAut K Ω σ).asIso.hom.app A := by
   ext x
   exact gal_toAut_hom_app_apply K Ω σ A x
 

@@ -2,6 +2,7 @@ module
 
 public import Mathlib.Algebra.Lie.OfAssociative
 public import Mathlib.RingTheory.RingHom.Etale
+public import Mathlib.RingTheory.RingHom.Finite
 public import Mathlib.RingTheory.TotallySplit
 
 /-

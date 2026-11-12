@@ -156,7 +156,7 @@ noncomputable instance profiniteAsOuterFunctorCoreFull :
     refine ⟨⟨profiniteOuterIsoRepresentative f.iso⟩, ?_⟩
     apply Core.hom_ext
     change (profiniteIsoAsOuter (profiniteOuterIsoRepresentative f.iso)).hom = f.iso.hom
-    rw [profiniteIsoAsOuter_outerIsoRepresentative]
+    exact congrArg Iso.hom (profiniteIsoAsOuter_outerIsoRepresentative f.iso)
 
 /-- The quotient functor is essentially surjective after passing to cores. -/
 noncomputable instance profiniteAsOuterFunctorCoreEssSurj :

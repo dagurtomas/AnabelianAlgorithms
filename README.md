@@ -39,7 +39,7 @@ is available to make those boundaries visible when desired.
 This project uses the Lean toolchain specified in `lean-toolchain`:
 
 ```text
-leanprover/lean4:v4.32.0-rc1
+leanprover/lean4:v4.35.0
 ```
 
 Typical setup and build commands:

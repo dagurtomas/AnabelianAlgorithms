@@ -97,6 +97,8 @@ end RingHom
 
 namespace AlgebraicGeometry
 
+set_option backward.isDefEq.respectTransparency.types false
+
 /-- A morphism is finite étale if it is finite and étale. -/
 @[mk_iff]
 class IsFiniteEtale {X Y : Scheme.{u}} (f : X ⟶ Y) : Prop

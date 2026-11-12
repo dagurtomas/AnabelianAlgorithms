@@ -17,8 +17,7 @@ noncomputable def Algebra.TensorProduct.comm' {R S T : Type*} [CommRing R]
     S ⊗[R] T ≃ₗ[S] T ⊗[R] S :=
   (_root_.TensorProduct.comm ..).toAddEquiv.toLinearEquiv <| by
     intro c x
-    induction x with
-    | zero => simp
+    induction x using TensorProduct.inductionOn with
     | add x y hx hy =>
       simp only [LinearEquiv.coe_toAddEquiv, LinearEquiv.coe_addEquiv_apply] at hx hy
       simp [hx, hy]

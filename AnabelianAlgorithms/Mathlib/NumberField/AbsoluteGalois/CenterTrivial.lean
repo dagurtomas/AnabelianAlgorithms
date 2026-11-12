@@ -927,6 +927,7 @@ theorem isGalois_Lζ_kummerNormalClosure
     isGalois_K_kummerNormalClosure S ha0
   exact IsGalois.tower_top_of_isGalois K S.Lζ (kummerNormalClosure S a)
 
+set_option maxHeartbeats 400000 in
 /--
 A central lift of `S.τζ` to the one-radical Kummer normal closure forces the cyclotomic-twisted
 Kummer class to be an `S.ell`-th power.

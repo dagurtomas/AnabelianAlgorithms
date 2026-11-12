@@ -80,19 +80,19 @@ lemma mapAut_finiteEtalePullbackId {X : Scheme.{u}}
 noncomputable def pointedEtalePi1MapIdConjugator {X : Scheme.{u}}
     {Ω : Type u} [Field Ω] [IsSepClosed Ω] (ξ : Spec (.of Ω) ⟶ X) :
     Aut (AlgebraicGeometry.FiniteEtale.fiber ξ) :=
-  fiberCompIso ξ (𝟙 X) ≪≫ finiteEtalePullbackIdFiberIso ξ
+  .of (fiberCompIso ξ (𝟙 X) ≪≫ finiteEtalePullbackIdFiberIso ξ)
 
 lemma pointedEtalePi1Map_id_apply {X : Scheme.{u}} [ConnectedSpace X]
     {Ω : Type u} [Field Ω] [IsSepClosed Ω] (ξ : Spec (.of Ω) ⟶ X)
     (x : Aut (AlgebraicGeometry.FiniteEtale.fiber ξ)) :
     (pointedEtalePi1Map ξ (𝟙 X)) x =
-      (pointedEtalePi1MapIdConjugator ξ).symm.conjAut x := by
+      (pointedEtalePi1MapIdConjugator ξ).asIso.symm.conjAut x := by
   change (fiberCompIso ξ (𝟙 X)).symm.conjAut
       (Functor.mapAut (AlgebraicGeometry.FiniteEtale.fiber ξ)
         ((Functor.whiskeringLeft (AlgebraicGeometry.FiniteEtale X)
           (AlgebraicGeometry.FiniteEtale X) FintypeCat).obj
           (AlgebraicGeometry.FiniteEtale.pullback (𝟙 X))) x) =
-    (pointedEtalePi1MapIdConjugator ξ).symm.conjAut x
+    (pointedEtalePi1MapIdConjugator ξ).asIso.symm.conjAut x
   rw [mapAut_finiteEtalePullbackId]
   simp [pointedEtalePi1MapIdConjugator, Iso.trans_conjAut]
   rfl
@@ -216,6 +216,7 @@ lemma mapAut_finiteEtalePullback_conj_fiberCompIso {X Y Z : Scheme.{u}}
         ((Functor.whiskeringLeft (AlgebraicGeometry.FiniteEtale Z)
           (AlgebraicGeometry.FiniteEtale Y) FintypeCat).obj
           (AlgebraicGeometry.FiniteEtale.pullback g)) x) := by
+  apply Aut.ext
   exact
     (Functor.map_conjAut
       ((Functor.whiskeringLeft (AlgebraicGeometry.FiniteEtale Z)
@@ -259,8 +260,8 @@ noncomputable def pointedEtalePi1MapCompConjugator {X Y Z : Scheme.{u}}
     {Ω : Type u} [Field Ω] [IsSepClosed Ω]
     (ξ : Spec (.of Ω) ⟶ X) (f : X ⟶ Y) (g : Y ⟶ Z) :
     Aut (AlgebraicGeometry.FiniteEtale.fiber (ξ ≫ (f ≫ g))) :=
-  (pointedEtalePi1MapCompIsoLeft ξ f g).symm ≪≫
-    pointedEtalePi1MapCompIsoRight ξ f g
+  .of ((pointedEtalePi1MapCompIsoLeft ξ f g).symm ≪≫
+    pointedEtalePi1MapCompIsoRight ξ f g)
 
 /-- `pointedEtalePi1Map` sends identity morphisms to identity morphisms in the outer quotient. -/
 theorem pointedEtalePi1Map_id_outer {X : Scheme.{u}} [ConnectedSpace X]
@@ -273,9 +274,10 @@ theorem pointedEtalePi1Map_id_outer {X : Scheme.{u}} [ConnectedSpace X]
   use pointedEtalePi1MapIdConjugator ξ
   intro x
   dsimp [pointedEtalePi1] at x ⊢
-  change (ContinuousMonoidHom.id (Aut (AlgebraicGeometry.FiniteEtale.fiber ξ))) x =
-    Iso.symm (pointedEtalePi1MapIdConjugator ξ) ≪≫
-      (pointedEtalePi1Map ξ (𝟙 X)) x ≪≫ pointedEtalePi1MapIdConjugator ξ
+  apply Aut.ext
+  change ((ContinuousMonoidHom.id (Aut (AlgebraicGeometry.FiniteEtale.fiber ξ))) x).asIso =
+    (pointedEtalePi1MapIdConjugator ξ).asIso.symm ≪≫
+      ((pointedEtalePi1Map ξ (𝟙 X)) x).asIso ≪≫ (pointedEtalePi1MapIdConjugator ξ).asIso
   rw [pointedEtalePi1Map_id_apply]
   ext
   simp [Iso.conj_apply]
@@ -294,12 +296,12 @@ theorem pointedEtalePi1Map_comp_outer {X Y Z : Scheme.{u}}
   use pointedEtalePi1MapCompConjugator ξ f g
   intro x
   dsimp [pointedEtalePi1] at x ⊢
-  change (pointedEtalePi1Map ξ f ≫ pointedEtalePi1Map (ξ ≫ f) g) x =
-    Iso.symm (pointedEtalePi1MapCompConjugator ξ f g) ≪≫
-      (pointedEtalePi1Map ξ (f ≫ g)) x ≪≫
-        pointedEtalePi1MapCompConjugator ξ f g
+  apply Aut.ext
+  change ((pointedEtalePi1Map ξ f ≫ pointedEtalePi1Map (ξ ≫ f) g) x).asIso =
+    (pointedEtalePi1MapCompConjugator ξ f g).asIso.symm ≪≫
+      ((pointedEtalePi1Map ξ (f ≫ g)) x).asIso ≪≫
+        (pointedEtalePi1MapCompConjugator ξ f g).asIso
   rw [pointedEtalePi1Map_comp_left_apply, pointedEtalePi1Map_comp_right_apply]
-  dsimp [pointedEtalePi1]
   ext
   simp [pointedEtalePi1MapCompConjugator, Iso.conj_apply]
 

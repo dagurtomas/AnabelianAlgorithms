@@ -6,6 +6,7 @@ Authors: Dagur Asgeirsson
 
 module
 
+public import Mathlib.Algebra.CharZero.Infinite
 public import Mathlib.Algebra.Field.ZMod
 public import Mathlib.Analysis.Polynomial.Basic
 public import Mathlib.NumberTheory.RamificationInertia.Galois
@@ -173,7 +174,7 @@ theorem exists_isMaximal_under_int_of_prime_dvd_minpoly_eval
   have hmemP : algebraMap A (𝓞 L) (⟨x - algebraMap ℤ (𝓞 L) n,
       (Algebra.adjoin ℤ ({x} : Set (𝓞 L))).sub_mem (Algebra.self_mem_adjoin_singleton ℤ x)
         ((Algebra.adjoin ℤ ({x} : Set (𝓞 L))).algebraMap_mem n)⟩ : A) ∈ P := by
-    rw [← Ideal.mem_comap, hPover]
+    rw [← Ideal.mem_comap, ← Ideal.under_def, hPover]
     exact hsub_q
   simpa using hmemP
 
